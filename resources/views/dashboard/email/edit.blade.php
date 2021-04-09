@@ -15,19 +15,22 @@
                             @csrf
                             @method('PUT')
                             <div class="form-group row">
-                                <label>Name</label>
-                                <input class="form-control" type="text" placeholder="Name" name="name" required autofocus value="{{ $template->name }}"/>
+                                <label>名前</label>
+                                <input class="form-control" type="text" placeholder="Name" name="name" required
+                                    autofocus value="{{ $template->name }}" />
                             </div>
                             <div class="form-group row">
-                                <label>Subject</label>
-                                <input class="form-control" type="text" placeholder="Subject" name="subject" required value="{{ $template->subject }}"/>
+                                <label>題名</label>
+                                <input class="form-control" type="text" placeholder="Subject" name="subject" required
+                                    value="{{ $template->subject }}" />
                             </div>
                             <div class="form-group row">
-                                <label>Content</label>
-                                <textarea class="form-control" name="content" rows="20" placeholder="Content" required>{{ $template->content }}</textarea>
+                                <label>内容</label>
+                                <textarea class="form-control" name="content" rows="20" placeholder="Content"
+                                    required>{{ $template->content }}</textarea>
                             </div>
-                            <button class="btn btn-success" type="submit">Edit</button>
-                            <a href="{{ route('mail.index') }}" class="btn btn-primary">Return</a> 
+                            <button class="btn btn-success" type="submit">編集</button>
+                            <a href="{{ route('mail.index') }}" class="btn btn-primary">戻る</a>
                         </form>
                     </div>
                 </div>

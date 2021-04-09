@@ -15,10 +15,10 @@
                             @csrf
                             <div class="form-group row">
                                 <label>Email adress</label>
-                                <input class="form-control" type="text" placeholder="Email adress" name="email" required autofocus/>
+                                <input class="form-control" type="text" placeholder="Email adress" name="email" required autofocus />
                             </div>
                             <button class="btn btn-success" type="submit">Send</button>
-                            <a href="{{ route('mail.index') }}" class="btn btn-primary">Return</a> 
+                            <a href="{{ route('mail.index') }}" class="btn btn-primary">戻る</a>
                         </form>
                     </div>
                 </div>

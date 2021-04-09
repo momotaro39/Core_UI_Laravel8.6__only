@@ -15,7 +15,8 @@ class MenuTest extends TestCase
     use DatabaseMigrations;
 
 
-    public function testMenuIndex(){
+    public function testMenuIndex()
+    {
         $user = User::factory()->admin()->create();
         $adminRole = Role::create(['name' => 'admin']);
         $user->assignRole($adminRole);
@@ -24,12 +25,13 @@ class MenuTest extends TestCase
         $menulist->save();
         $response = $this->actingAs($user)->get('/menu/menu');
         $response->assertSee('test2');
-        $response->assertSee('<a class="btn btn-primary" href="'.env('APP_URL', 'http://localhost:8000').'/menu/element?menu=1">Show</a>', false);
+        $response->assertSee('<a class="btn btn-primary" href="' . env('APP_URL', 'http://localhost:8000') . '/menu/element?menu=1">詳細</a>', false);
         $response->assertSee('Add new menu');
         $response->assertSee('Menus list');
     }
 
-    public function testMenuCreate(){
+    public function testMenuCreate()
+    {
         $user = User::factory()->admin()->create();
         $adminRole = Role::create(['name' => 'admin']);
         $user->assignRole($adminRole);
@@ -37,15 +39,17 @@ class MenuTest extends TestCase
         $response->assertSee('Create menu');
     }
 
-    public function testMenuStore(){
+    public function testMenuStore()
+    {
         $user = User::factory()->admin()->create();
         $adminRole = Role::create(['name' => 'admin']);
         $user->assignRole($adminRole);
         $response = $this->actingAs($user)->post('/menu/menu/store',  ['name' => 'test3']);
-        $this->assertDatabaseHas('menulist',['name' => 'test3']);
+        $this->assertDatabaseHas('menulist', ['name' => 'test3']);
     }
 
-    public function testMenuEdit(){
+    public function testMenuEdit()
+    {
         $user = User::factory()->admin()->create();
         $adminRole = Role::create(['name' => 'admin']);
         $user->assignRole($adminRole);
@@ -56,29 +60,31 @@ class MenuTest extends TestCase
         $response->assertSee('test2');
     }
 
-    public function testMenuUpdate(){
+    public function testMenuUpdate()
+    {
         $user = User::factory()->admin()->create();
         $adminRole = Role::create(['name' => 'admin']);
         $user->assignRole($adminRole);
         $menulist = new Menulist();
         $menulist->name = 'test2';
         $menulist->save();
-        $this->assertDatabaseHas('menulist',['name' => 'test2']);
+        $this->assertDatabaseHas('menulist', ['name' => 'test2']);
         $response = $this->actingAs($user)->post('/menu/menu/update',  ['id' => $menulist->id, 'name' => 'test3']);
-        $this->assertDatabaseHas('menulist',['name' => 'test3']);
+        $this->assertDatabaseHas('menulist', ['name' => 'test3']);
     }
 
-    public function testMenuDelete(){
+    public function testMenuDelete()
+    {
         $user = User::factory()->admin()->create();
         $adminRole = Role::create(['name' => 'admin']);
         $user->assignRole($adminRole);
         $menulist = new Menulist();
         $menulist->name = 'test2';
         $menulist->save();
-        $this->assertDatabaseHas('menulist',['name' => 'test2']);
+        $this->assertDatabaseHas('menulist', ['name' => 'test2']);
         $response = $this->actingAs($user)->get('/menu/menu/delete?id=' . $menulist->id);
         $response->assertStatus(200);
-        $this->assertDatabaseMissing('menulist',['name' => 'test2']);
+        $this->assertDatabaseMissing('menulist', ['name' => 'test2']);
     }
 
     /*

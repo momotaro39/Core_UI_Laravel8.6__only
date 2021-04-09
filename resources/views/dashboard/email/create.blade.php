@@ -14,22 +14,22 @@
                         <form method="POST" action="{{ route('mail.store') }}">
                             @csrf
                             <div class="form-group row">
-                                <label>Name</label>
-                                <input class="form-control" type="text" placeholder="Name" name="name" required autofocus/>
+                                <label>名前</label>
+                                <input class="form-control" type="text" placeholder="Name" name="name" required autofocus />
                             </div>
                             <div class="form-group row">
-                                <label>Subject</label>
-                                <input class="form-control" type="text" placeholder="Subject" name="subject" required/>
+                                <label>題名</label>
+                                <input class="form-control" type="text" placeholder="Subject" name="subject" required />
                             </div>
                             <div class="form-group row">
-                                <label>Content</label>
+                                <label>内容</label>
                                 <textarea class="form-control" name="content" rows="20" placeholder="Content" required>
                                 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="x-apple-disable-message-reformatting">
     <title>Example</title>
     <style>
@@ -74,26 +74,26 @@
         <h1>Lorem ipsum dolor</h1>
         <h4>Ipsum dolor cet emit amet</h4>
         <p>
-             Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea <strong>commodo consequat</strong>. 
-             Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+             Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea <strong>commodo consequat</strong>.
+             Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         </p>
         <h4>Ipsum dolor cet emit amet</h4>
         <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod <a href="#">tempor incididunt ut labore</a> et dolore magna aliqua.
-             Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+             Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
         </p>
         <h4>Ipsum dolor cet emit amet</h4>
         <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-             Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+             Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
         </p>
         <a href="#" class="btn btn-primary">Lorem ipsum dolor</a>
         <h4>Ipsum dolor cet emit amet</h4>
         <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-             Ut enim ad minim veniam, quis nostrud exercitation <a href="#">ullamco</a> laboris nisi ut aliquip ex ea commodo consequat. 
-             Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+             Ut enim ad minim veniam, quis nostrud exercitation <a href="#">ullamco</a> laboris nisi ut aliquip ex ea commodo consequat.
+             Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         </p>
     </div>
@@ -102,7 +102,7 @@
                                 </textarea>
                             </div>
                             <button class="btn btn-success" type="submit">Add</button>
-                            <a href="{{ route('mail.index') }}" class="btn btn-primary">Return</a> 
+                            <a href="{{ route('mail.index') }}" class="btn btn-primary">戻る</a>
                         </form>
                     </div>
                 </div>

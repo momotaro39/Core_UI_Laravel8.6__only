@@ -246,7 +246,7 @@
             <h6>System Utilization</h6>
             <div class="text-uppercase mb-1 mt-4">
               <small>
-                <b>CPU Usage</b>
+                <b>CPU 使用率</b>
               </small>
             </div>
             <div class="progress progress-xs">
@@ -255,7 +255,7 @@
             <small class="text-muted">348 Processes. 1/4 Cores.</small>
             <div class="text-uppercase mb-1 mt-2">
               <small>
-                <b>Memory Usage</b>
+                <b>Memory 使用率</b>
               </small>
             </div>
             <div class="progress progress-xs">
@@ -264,7 +264,7 @@
             <small class="text-muted">11444GB/16384MB</small>
             <div class="text-uppercase mb-1 mt-2">
               <small>
-                <b>SSD 1 Usage</b>
+                <b>SSD 1 使用率</b>
               </small>
             </div>
             <div class="progress progress-xs">
@@ -273,7 +273,7 @@
             <small class="text-muted">243GB/256GB</small>
             <div class="text-uppercase mb-1 mt-2">
               <small>
-                <b>SSD 2 Usage</b>
+                <b>SSD 2 使用率</b>
               </small>
             </div>
             <div class="progress progress-xs">

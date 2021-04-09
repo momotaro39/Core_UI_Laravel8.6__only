@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Core_Laravel_Only'),
 
     /*
     |--------------------------------------------------------------------------
@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Tokyo',
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +80,8 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'ja',
+
 
     /*
     |--------------------------------------------------------------------------
@@ -105,8 +106,10 @@ return [
     | localized telephone numbers, street address information and more.
     |
     */
+    'faker_locale' => 'ja_JP',
+    // 'faker_locale' => 'ja_JP',
+    // 'faker_locale' => env('APP_FAKER_LOCALE', 'ja_JP'),
 
-    'faker_locale' => 'en_US',
 
     /*
     |--------------------------------------------------------------------------
@@ -174,7 +177,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        
+
         Spatie\Permission\PermissionServiceProvider::class,
     ],
 

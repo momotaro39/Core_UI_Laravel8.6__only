@@ -19,7 +19,7 @@
                         <p>{{ $template->content }}</p>
 
 
-                        <a href="{{ route('mail.index') }}" class="btn btn-primary">Return</a> 
+                        <a href="{{ route('mail.index') }}" class="btn btn-primary">戻る</a>
                     </div>
                 </div>
             </div>
