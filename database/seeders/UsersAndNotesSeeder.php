@@ -20,8 +20,8 @@ class UsersAndNotesSeeder extends Seeder
     public function run()
     {
         // 初期値設定
-        $numberOfUsers = 10;
-        $numberOfNotes = 100;
+        $numberOfUsers = 3;
+        $numberOfNotes = 5;
         // 空の配列作成
         $usersIds = array();
         $statusIds = array();
@@ -101,6 +101,40 @@ class UsersAndNotesSeeder extends Seeder
         $user->assignRole('admin');
         $user->assignRole('user');
 
+        // 固定ユーザー
+        $user = User::create([
+            'name' => '荻野',
+            'email' => 'test1@test.com',
+            'email_verified_at' => now(), //現在時刻追加
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+            'menuroles' => 'user,admin' //権限追加
+        ]);
+        $user->assignRole('user');
+
+        // 固定ユーザー
+        $user = User::create([
+            'name' => 'サボさん',
+            'email' => 'test2@test.com',
+            'email_verified_at' => now(), //現在時刻追加
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+            'menuroles' => 'user,admin' //権限追加
+        ]);
+        $user->assignRole('user');
+
+        // 固定ユーザー
+        $user = User::create([
+            'name' => '齋藤',
+            'email' => 'test3@test.com',
+            'email_verified_at' => now(), //現在時刻追加
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+            'menuroles' => 'user,admin' //権限追加
+        ]);
+        $user->assignRole('user');
+
+
 
         // ユーザー権限メンバーを一気に作る
         for ($i = 0; $i < $numberOfUsers; $i++) {
@@ -120,15 +154,17 @@ class UsersAndNotesSeeder extends Seeder
 
         /*  insert notes  ノートを追加*/
         for ($i = 0; $i < $numberOfNotes; $i++) {
-            $noteType = $faker->word();
+            // $noteType = $faker->word();
+            $noteType = '文庫';
             if (random_int(0, 1)) {
-                $noteType .= ' ' . $faker->word();
+                // $noteType .= ' ' . $faker->word();
+
             }
 
             // ノートにまとめたデータを追加する。
             DB::table('notes')->insert([
                 'title'         => $faker->sentence(4, true),
-                'content'       => $faker->paragraph(3, true),
+                'content'       => $faker->paragraph(2, true),
                 'status_id'     => $statusIds[random_int(0, count($statusIds) - 1)],
                 'note_type'     => $noteType,
                 'applies_to_date' => $faker->date(),

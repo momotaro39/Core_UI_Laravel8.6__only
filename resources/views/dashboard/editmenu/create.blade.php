@@ -49,7 +49,8 @@
                                                 @foreach($roles as $role)
                                                 <tr>
                                                     <td>
-                                                        <input type="checkbox" name="role[]" value="{{ $role }}" class="form-control" />
+                                                        <input type="checkbox" name="role[]" value="{{ $role }}"
+                                                            class="form-control" />
                                                     </td>
                                                     <td>
                                                         {{ $role }}
@@ -61,15 +62,16 @@
                                     </tr>
                                     <tr>
                                         <th>
-                                            Name
+                                            名前
                                         </th>
                                         <td>
-                                            <input class="form-control" type="text" name="name" placeholder="Name" required />
+                                            <input class="form-control" type="text" name="name" placeholder="Name"
+                                                required />
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            Type
+                                            型
                                         </th>
                                         <td>
                                             <select class="form-control" name="type" id="type">
@@ -86,7 +88,8 @@
                                         <td>
                                             <div id="div-href">
                                                 Href:
-                                                <input type="text" name="href" class="form-control" placeholder="href" />
+                                                <input type="text" name="href" class="form-control"
+                                                    placeholder="href" />
                                             </div>
                                             <br><br>
                                             <div id="div-dropdown-parent">
@@ -98,17 +101,19 @@
                                             <br><br>
                                             <div id="div-icon">
                                                 Icon - Find icon class in:
-                                                <a href="https://coreui.io/docs/icons/icons-list/#coreui-icons-free-502-icons" target="_blank">
+                                                <a href="https://coreui.io/docs/icons/icons-list/#coreui-icons-free-502-icons"
+                                                    target="_blank">
                                                     CoreUI icons documentation
                                                 </a>
                                                 <br>
-                                                <input class="form-control" name="icon" type="text" placeholder="CoreUI Icon class - example: cil-bell">
+                                                <input class="form-control" name="icon" type="text"
+                                                    placeholder="CoreUI Icon class - example: cil-bell">
                                             </div>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <button class="btn btn-primary" type="submit">Save</button>
+                            <button class="btn btn-primary" type="submit">保存</button>
                             <a class="btn btn-primary" href="{{ route('menu.index') }}">戻る</a>
                         </form>
                     </div>

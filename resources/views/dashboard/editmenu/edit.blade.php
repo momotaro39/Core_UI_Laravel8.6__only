@@ -78,7 +78,7 @@
                                     </tr>
                                     <tr>
                                         <th>
-                                            Name
+                                            名前
                                         </th>
                                         <td>
                                             <input type="text" class="form-control" name="name" value="{{ $menuElement->name }}" placeholder="Name" />
@@ -86,7 +86,7 @@
                                     </tr>
                                     <tr>
                                         <th>
-                                            Type
+                                            型
                                         </th>
                                         <td>
                                             <select class="form-control" name="type" id="type">
@@ -138,7 +138,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <button class="btn btn-primary" type="submit">Save</button>
+                            <button class="btn btn-primary" type="submit">保存</button>
                             <a class="btn btn-primary" href="{{ route('menu.index', ['menu' => $menuElement->menu_id]) }}">戻る</a>
                         </form>
                     </div>

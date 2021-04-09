@@ -23,7 +23,7 @@
                 <tbody>
                   <tr>
                     <th>
-                      Name
+                      名前
                     </th>
                     <td>
                       <input class="form-control" name="name" value="{{ $role->name }}" type="text" />
@@ -31,7 +31,7 @@
                   </tr>
                 </tbody>
               </table>
-              <button class="btn btn-primary" type="submit">Save</button>
+              <button class="btn btn-primary" type="submit">保存</button>
               <a class="btn btn-primary" href="{{ route('roles.index') }}">戻る</a>
             </form>
           </div>

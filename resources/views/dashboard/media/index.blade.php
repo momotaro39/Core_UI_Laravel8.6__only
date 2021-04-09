@@ -175,7 +175,7 @@
                                                 </tr>
                                                 @endforeach
                                             </table>
-                                            <button type="submit" class="btn btn-primary mt-3">Save</button>
+                                            <button type="submit" class="btn btn-primary mt-3">保存</button>
                                             <button type="button" class="btn btn-primary mt-3" id="file-move-folder-cancel">Cancel</button>
                                         </form>
                                     </div>
@@ -212,7 +212,7 @@
                                                 </tr>
                                                 @endforeach
                                             </table>
-                                            <button type="submit" class="btn btn-primary mt-3">Save</button>
+                                            <button type="submit" class="btn btn-primary mt-3">保存</button>
                                             <button type="button" class="btn btn-primary mt-3" id="file-move-file-cancel">Cancel</button>
                                         </form>
                                     </div>
@@ -228,7 +228,7 @@
                                             <input type="hidden" name="thisFolder" value="{{ $thisFolder }}">
                                             <input type="hidden" name="id" value="" id="file-rename-file-id">
                                             <input type="text" name="name" id="file-rename-file-name" class="form-control">
-                                            <button type="submit" class="btn btn-primary mt-3">Save</button>
+                                            <button type="submit" class="btn btn-primary mt-3">保存</button>
                                             <button type="button" class="btn btn-primary mt-3" id="file-rename-file-cancel">Cancel</button>
                                         </form>
                                     </div>
@@ -243,7 +243,7 @@
                                             <input type="hidden" name="thisFolder" value="{{ $thisFolder }}">
                                             <input type="hidden" name="id" value="" id="file-rename-folder-id">
                                             <input type="text" name="name" id="file-rename-folder-name" class="form-control">
-                                            <button type="submit" class="btn btn-primary mt-3">Save</button>
+                                            <button type="submit" class="btn btn-primary mt-3">保存</button>
                                             <button type="button" class="btn btn-primary mt-3" id="file-rename-folder-cancel">Cancel</button>
                                         </form>
                                     </div>
@@ -381,7 +381,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                            <button class="btn btn-primary" type="button" id="cropp-img-save-button">Save</button>
+                                            <button class="btn btn-primary" type="button" id="cropp-img-save-button">保存</button>
                                         </div>
                                     </div>
                                     <!-- /.modal-content-->
