@@ -157,12 +157,25 @@ class MenusTableSeeder extends Seeder
         $this->endDropdown();
         // ここまでドロップダウン
 
+        // クリックでドロップダウン（追加機能を足していく）
+        $this->insertTitle('user,admin', '追加機能(API)');
+        $this->insertLink('user,admin', '名前API',    '/function/randomuser', 'cil-drop1');
+        $this->insertLink('user,admin', 'DogAPI',    '/function/randomdog', 'cil-drop1');
+        $this->insertLink('user,admin', 'NewsAPI',    '/function/randomnews', 'cil-drop1');
+        $this->insertLink('user,admin', 'GitHubAPI',    '/function/github', 'cil-drop1');
+        $this->endDropdown();
+
+        // ゲストメンバーのみ表示
         $this->insertLink('guest', 'ログイン設定', '/login', 'cil-account-logout');
         $this->insertLink('guest', '登録設定', '/register', 'cil-account-logout');
+
         // ここから使い方解説
         $this->insertTitle('user,admin', 'テーマで扱う内容');
         $this->insertLink('user,admin', '色見本', '/colors', 'cil-drop1');
         $this->insertLink('user,admin', '文字装飾', '/typography', 'cil-pencil');
+        $this->insertLink('user,admin', 'カード',         '/base/cards');
+        $this->endDropdown();
+        // クリックでドロップダウン
         $this->beginDropdown('user,admin', '基本的なパーツの紹介', 'cil-puzzle');
         $this->insertLink('user,admin', 'パンくずリスト見本',    '/base/breadcrumb');
         $this->insertLink('user,admin', 'カード',         '/base/cards');

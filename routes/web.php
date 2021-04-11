@@ -11,14 +11,17 @@
 |
 */
 
-
 Route::get('/tasks', function () {
     return view('app');
 });
+// CoreUI用ルーティング
 Route::group(['middleware' => ['get.menu']], function () {
     Route::get('/', function () {
         return view('dashboard.homepage');
     });
+    //追加機能用ルーティング サイドバーにも表示するために利用
+    Route::get('/function/randomuser', 'RandomuserController@index');
+
 
     //user権限のみ
     Route::group(['middleware' => ['role:user']], function () {
