@@ -22,6 +22,21 @@ Route::group(['middleware' => ['get.menu']], function () {
     //追加機能用ルーティング サイドバーにも表示するために利用
     Route::get('/function/randomuser', 'RandomuserController@index');
 
+    //Axios導入テスト
+
+    Route::get('/function/users', function () {
+        return view('axios.index');
+    });
+
+    Route::get('users', function () {
+        return ['Ken', 'Mike', 'John', 'Lisa'];
+    });
+
+    // List articles
+    Route::get('articles', 'ArticlesController@index');
+
+    // List single article
+    Route::get('articles/{id}', 'ArticlesController@show');
 
     //user権限のみ
     Route::group(['middleware' => ['role:user']], function () {

@@ -23,6 +23,14 @@ Vue.component(
     "randomuser-component",
     require("./components/RandomuserComponent.vue").default
 );
+Vue.component(
+    "example-component",
+    require("./components/ExampleComponent.vue").default
+);
+Vue.component(
+    "example-api-component",
+    require("./components/ExampleApiComponent.vue").default
+);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
