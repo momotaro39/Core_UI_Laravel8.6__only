@@ -22,6 +22,20 @@ Route::group(['middleware' => ['get.menu']], function () {
     //追加機能用ルーティング サイドバーにも表示するために利用
     Route::get('/function/randomuser', 'RandomuserController@index');
 
+    //Axios導入テスト フォルダとファイル名でビューファイルを指定
+    Route::get('/function/users', function () {
+        return view('axios.index');
+    });
+    //Axios導入テスト api用のファイルを確認のために配列を作成
+    // Route::get('userapi', function () {
+    //     return ['けん', 'サイトう', 'John', 'Lisa'];
+    // });
+
+    //Axios導入テスト api用のデータをデータベースから取得
+    Route::get('userapi', function () {
+        return App\User::all();
+    });
+
 
     //user権限のみ
     Route::group(['middleware' => ['role:user']], function () {
