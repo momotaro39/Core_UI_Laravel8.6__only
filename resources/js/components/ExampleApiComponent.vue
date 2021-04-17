@@ -8,7 +8,7 @@
           <div class="card-body">
             exampleapi componentを現在出力中
             <ul>
-              <li v-for="user in users">{{ user }}</li>
+              <li v-for="user in users">名前 {{ user.name }} メールアドレス {{ user.email }}</li>
             </ul>
           </div>
         </div>
@@ -18,9 +18,14 @@
 </template>
 
 <script>
-export default {
-   mounted() {
-      axios.get('/users').then(response => console.log(response))
-   }
-}
+    export default {
+        data(){
+            return {
+                users: []
+            }
+        },
+        mounted() {
+          axios.get('/userapi').then(response => this.users = response.data)
+        }
+    }
 </script>

@@ -22,21 +22,20 @@ Route::group(['middleware' => ['get.menu']], function () {
     //追加機能用ルーティング サイドバーにも表示するために利用
     Route::get('/function/randomuser', 'RandomuserController@index');
 
-    //Axios導入テスト
-
+    //Axios導入テスト フォルダとファイル名でビューファイルを指定
     Route::get('/function/users', function () {
         return view('axios.index');
     });
+    //Axios導入テスト api用のファイルを確認のために配列を作成
+    // Route::get('userapi', function () {
+    //     return ['けん', 'サイトう', 'John', 'Lisa'];
+    // });
 
-    Route::get('users', function () {
-        return ['Ken', 'Mike', 'John', 'Lisa'];
+    //Axios導入テスト api用のデータをデータベースから取得
+    Route::get('userapi', function () {
+        return App\User::all();
     });
 
-    // List articles
-    Route::get('articles', 'ArticlesController@index');
-
-    // List single article
-    Route::get('articles/{id}', 'ArticlesController@show');
 
     //user権限のみ
     Route::group(['middleware' => ['role:user']], function () {
