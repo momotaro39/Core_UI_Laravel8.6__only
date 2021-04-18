@@ -33,6 +33,8 @@ class DatabaseSeeder extends Seeder
             ExampleSeeder::class,
             BREADSeeder::class,
             EmailSeeder::class,
+            AuthInformationTableSeeder::class,
+            ProfileTableSeeder::class,
         ]);
     }
 }

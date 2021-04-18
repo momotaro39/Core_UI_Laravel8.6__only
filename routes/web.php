@@ -36,6 +36,16 @@ Route::group(['middleware' => ['get.menu']], function () {
         return App\User::all();
     });
 
+    // CSV機能の追加
+    Route::get('function/csv/list', 'CsvDownloadController@plist'); //一覧表示
+    Route::get('function/csv/search', 'CsvDownloadController@search');       //検索
+    Route::get('function/csv/download1', 'CsvDownloadController@download1'); //ダウンロード
+    Route::get('/function/csv', function () {
+        return view('functions.csv');
+    });
+    Route::get('csv/practice2', 'CsvDownloadController@practice2'); //表示
+    Route::post('csv/practice2', 'CsvDownloadController@upload_regist'); //登録
+
 
     //user権限のみ
     Route::group(['middleware' => ['role:user']], function () {
