@@ -36,6 +36,8 @@ Route::group(['middleware' => ['get.menu']], function () {
         return App\User::all();
     });
 
+    // Laravel_Excel追加
+    Route::get('excelusers', [ExcelUsersController::class, 'export']);
 
     //user権限のみ
     Route::group(['middleware' => ['role:user']], function () {
