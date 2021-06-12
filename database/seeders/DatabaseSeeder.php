@@ -34,5 +34,40 @@ class DatabaseSeeder extends Seeder
             BREADSeeder::class,
             EmailSeeder::class,
         ]);
+
+
+        // ここはバンド関係のシーダー 登録のために順番変更
+        $this->call([
+            // バンドの曲の関係の順番
+            LabelsTableSeeder::class,
+            BandsTableSeeder::class,
+            AlbumsTableSeeder::class,
+            MusicsTableSeeder::class,
+            LabelsTableSeeder::class,
+
+
+
+            // 人の関係の順番
+            AdminRolesTableSeeder::class,
+            UserRolesTableSeeder::class,
+            UsersTableSeeder::class,
+            BandMembersTableSeeder::class,
+            BandMembersLogsTableSeeder::class,
+
+            MusicalInstrumentsTableSeeder::class,
+
+            HallTableSeeder::class,
+            EventsTableSeeder::class,
+
+            // その他のシーダー、中間テーブル
+            GoodsTypesTableSeeder::class,
+            EntriesTableSeeder::class,
+            BandGoodsTableSeeder::class,
+            GuestReservationsTableSeeder::class,
+            PerformanceListsTableSeeder::class,
+            ProceedsTableSeeder::class,
+            TicketListsTableSeeder::class,
+
+        ]);
     }
 }

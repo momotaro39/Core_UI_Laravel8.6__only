@@ -2,6 +2,46 @@
 
 /*
 |--------------------------------------------------------------------------
+| モデルの場所追加
+|--------------------------------------------------------------------------
+|
+|
+|
+|
+|
+*/
+
+
+use App\Http\Controllers\TodoController;
+
+
+
+use App\Http\Controllers\Band\Admin\UserRoleController;
+use App\Http\Controllers\Band\Admin\UserController;
+use App\Http\Controllers\Band\Admin\AlbumController;
+use App\Http\Controllers\Band\Admin\BandMemberController;
+use App\Http\Controllers\Band\Admin\BandGoodsController;
+use App\Http\Controllers\Band\Admin\EntryController;
+use App\Http\Controllers\Band\Admin\EventController;
+use App\Http\Controllers\Band\Admin\GoodsTypeController;
+use App\Http\Controllers\Band\Admin\GuestReservationController;
+use App\Http\Controllers\Band\Admin\LabelController;
+use App\Http\Controllers\Band\Admin\HallController;
+use App\Http\Controllers\Band\Admin\MusicController;
+use App\Http\Controllers\Band\Admin\MusicalInstrumentController;
+use App\Http\Controllers\Band\Admin\PerformanceListController;
+use App\Http\Controllers\Band\Admin\ProceedController;
+use App\Http\Controllers\Band\Admin\TicketListController;
+
+
+
+
+
+
+
+
+/*
+|--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 |
@@ -14,6 +54,8 @@
 Route::get('/tasks', function () {
     return view('app');
 });
+
+
 // CoreUI用ルーティング
 Route::group(['middleware' => ['get.menu']], function () {
     Route::get('/', function () {
@@ -161,6 +203,8 @@ Route::group(['middleware' => ['get.menu']], function () {
         'update'    => 'resource.update',
         'destroy'   => 'resource.destroy'
     ]);
+
+
     // 管理者権限のみ
     Route::group(['middleware' => ['role:admin']], function () {
         Route::resource('bread',  'BreadController');   //create BREAD (resource)
@@ -207,5 +251,63 @@ Route::group(['middleware' => ['get.menu']], function () {
             Route::post('/file/cropp',      'MediaController@cropp');
             Route::get('/file/copy',        'MediaController@fileCopy')->name('media.file.copy');
         });
+
+
+
+        // グループルーティング始まり
+
+        Route::prefix('core')->group(function () {
+
+
+            // TOP画面
+
+            // Route::get('/top_page', [\App\Http\Controllers\TopPageController::class, 'top_page'])->name('top_page');
+
+
+            // システム役割
+            // メソッドがひとつの_invokeメソッドの場合のルーティング
+            // Route::get('/roles', '\App\Http\Controllers\RoleController')->name('役割一覧')->middleware('auth');
+            Route::get('/adminroles', '\App\Http\Controllers\Band\Admin\AdminRoleController')->name('管理役割一覧')->middleware('auth'); //管理者・バンド代表者・バンドメンバー  管理画面役割設定
+            Route::get('/userroles', '\App\Http\Controllers\Band\Admin\UserRoleController')->name('利用役割一覧')->middleware('auth'); //バンド代表・バンドメンバー・お客さん
+
+
+
+
+            // バンド
+            // Route::resource('/bands', BandMemberController::class)->middleware('auth');
+
+            // バンドメンバー
+            // namespaceに書いていない場合はこの書き方でもOK
+            Route::resource('/members', \App\Http\Controllers\Band\Admin\BandMemberController::class)->middleware('auth');
+
+
+            // ユーザー
+            // Route::get('/users', 'App\Http\Controllers\Band\Admin\UserController')->name('ユーザー一覧')->middleware('auth');
+
+
+            // まとめて設定することができる
+            Route::resources([
+                // '/users'            => UserController::class,
+                '/bands'            => BandMemberController::class,
+                '/bandgoods'        => BandGoodsController::class,
+                '/albums'           => AlbumController::class,
+                '/entries'          => EntryController::class,
+                '/events'           => EventController::class,
+                '/goodstype'        => GoodsTypeController::class,
+                '/guestreservation' => GuestReservationController::class,
+                '/halls'            => HallController::class,
+                '/labels'           => LabelController::class,
+                '/musics'           => MusicController::class,
+                '/musicalinstrument' => MusicalInstrumentController::class,
+                '/performancelists' => PerformanceListController::class,
+                '/proceeds'         => ProceedController::class,
+                '/ticketlists'      => TicketListController::class,
+
+            ]);
+        });
+
+        // グループルーティング終わり
+
+
     });
 });
