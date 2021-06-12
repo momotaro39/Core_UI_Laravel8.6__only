@@ -15,11 +15,15 @@ namespace App\Http\Controllers\Band\Admin;
     |
     */
 
+// ページネーションを使う時に利用
+use Illuminate\Pagination\Paginator;
+
 //コントローラーの場所を変えたときには必要になる
 use App\Http\Controllers\Controller;
 
 //認証機能を使うときに必要
 use Illuminate\Support\Facades\Auth;
+
 
 use App\Models\band\AdminRole;
 use App\Models\Band\UserRole;
@@ -57,6 +61,9 @@ class AdminRoleController extends Controller
          *****************************/
 
         $user = Auth::user();
+
+
+
 
         /***************************
          *
@@ -129,9 +136,15 @@ class AdminRoleController extends Controller
         /***************************
          * 追加機能として利用
          * ページネーションの数を設定する
-         * コンフィグファイルでページ数を設定しておく
+         * コンフィグファイルでページ数を設定しておく。
+         *
+         * Bootstrap方式を使うpsgenate()方法も記述
+         *
          *****************************/
+
         $paginateNum     = config('const.paginate.other'); //ページ設定
+        // $paginations = 〇〇::paginate(config('const.paginate.other'));
+
 
         /***************************
          * 追加機能として利用
@@ -165,8 +178,6 @@ class AdminRoleController extends Controller
             'queriesList',
         );
         return view('MemberManagement.AdminRoles.index', $requestData);
-
-
     }
 
 
@@ -204,6 +215,4 @@ class AdminRoleController extends Controller
         }
         return $query;
     }
-
-
 }

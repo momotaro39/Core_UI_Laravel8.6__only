@@ -1,0 +1,271 @@
+memo.text
+
+
+
+/*
+|--------------------------------------------------------------------------
+| マイグレーションファイルを一気に作る
+|--------------------------------------------------------------------------
+|
+| 基本のコマンド
+| php artisan make:migration
+|
+|
+*/
+
+
+2021_05_21_165609_create_musical_instruments_table
+
+
+php artisan make:migration create_performance_lists_table
+php artisan make:migration create_goods_types_table
+php artisan make:migration create_guest_reservations_table
+php artisan make:migration create_ticket_lists_table
+php artisan make:migration create_proceeds_table
+php artisan make:migration create_musicalInstruments_table
+php artisan make:migration create_albums_table
+php artisan make:migration create_labels_table
+php artisan make:migration create_musics_table
+php artisan make:migration create_events_table
+php artisan make:migration create_entrys_table
+php artisan make:migration create_hall_table
+
+
+まとめて一気に作る
+
+php artisan make:migration create_performance_lists_table && php artisan make:migration create_goods_types_table && php artisan make:migration create_guest_reservations_table && php artisan make:migration create_ticket_lists_table && php artisan make:migration create_proceeds_table
+php artisan make:migration create_albums_table && php artisan make:migration create_labels_table && php artisan make:migration create_musics_table && php artisan make:migration create_events_table && php artisan make:migration create_entrys_table && php artisan make:migration create_hall_table
+
+
+/*
+|--------------------------------------------------------------------------
+| シーダーの作成
+|--------------------------------------------------------------------------
+|
+| 複数形で作成を行う
+|
+|
+|
+*/
+
+
+php artisan make:seeder
+
+php artisan make:seeder AlbumsTableSeeder
+php artisan make:seeder LabelsTableSeeder
+php artisan make:seeder MusicsTableSeeder
+php artisan make:seeder EventsTableSeeder
+php artisan make:seeder EntrysTableSeeder
+php artisan make:seeder HallTableSeeder
+
+php artisan make:seeder PerformanceListsTableSeeder
+php artisan make:seeder GoodsTypesTableSeeder
+php artisan make:seeder GuestReservationsTableSeeder
+php artisan make:seeder TicketListsTableSeeder
+php artisan make:seeder ProceedsTableSeeder
+
+まとめて一気に作る
+php artisan make:seeder PerformanceListsTableSeeder && php artisan make:seeder GoodsTypesTableSeeder && php artisan make:seeder GuestReservationsTableSeeder && php artisan make:seeder TicketListsTableSeeder && php artisan make:seeder ProceedsTableSeeder
+php artisan make:seeder AlbumsTableSeeder  && php artisan make:seeder LabelsTableSeeder  && php artisan make:seeder MusicsTableSeeder  && php artisan make:seeder EventsTableSeeder  && php artisan make:seeder EntrysTableSeeder  && php artisan make:seeder HallTableSeeder
+
+
+
+/*
+|--------------------------------------------------------------------------
+| モデルの作成
+|--------------------------------------------------------------------------
+|
+| マイグレーションファイル作成の後に実行
+|
+|
+|
+*/
+
+
+php artisan krlove:generate:model Album --table-name=albums
+php artisan krlove:generate:model Label --table-name=labels
+php artisan krlove:generate:model Music --table-name=musics
+php artisan krlove:generate:model Event --table-name=events
+php artisan krlove:generate:model Entry --table-name=entrys
+php artisan krlove:generate:model Hall --table-name=hall
+
+
+/*
+|--------------------------------------------------------------------------
+| 基本の設定
+|--------------------------------------------------------------------------
+| 利用するライブラリを追加する
+| 公式ドキュメントを確認する
+*/
+
+use function App\guest_resevations;
+
+導入手順
+eloquent-model-generatorをインポートします。
+
+まずはチェック
+composer.jsonに以下のファイルが入っているか確認しましょう。
+
+"krlove/eloquent-model-generator"
+    "require-dev": {
+        "facade/ignition": "^2.0",
+        "krlove/eloquent-model-generator": "^1.3",
+        "mockery/mockery": "^1.3.1",
+        "nunomaduro/collision": "^4.1",
+        "phpunit/phpunit": "^8.5",
+        "squizlabs/php_codesniffer": "^3.5"
+    },
+
+
+上記のように表示されていない場合は、インストールする必要があるので、composer requireコマンドで導入します。 composer requireコマンドで導入していきます。
+
+composer require krlove/eloquent-model-generator --dev
+
+/*
+|--------------------------------------------------------------------------
+|
+|--------------------------------------------------------------------------
+|
+|
+|
+|
+|
+*/
+
+マイグレーションファイルの作成（基本）
+マイグレーションは最初に生成しておきましょう。 この場合は、
+
+php artisan make:migration ファイル名 --create=テーブル名
+見本
+
+php artisan make:migration create_user_types_table
+
+
+php artisan migrate:make create_users_table
+
+
+生成されると以下のようなメッセージが出ます。
+
+Created Migration: 20〇〇_〇〇_〇〇_10〇〇_create_users_table
+// Generating optimized class loader
+
+
+
+// 20〇〇_〇〇_〇〇_10〇〇_create_users_table がapp/database/migrationsフォルダに作成されます。
+
+// マイグレーションで準備
+// ファイルでテーブルを作ります。 作成したテーブルをデータベースに反映させておきます。
+
+php artisan migrate
+// ここでマイグレーションファイルまでの準備完成です。
+
+// ここからマイグレーションファイルからモデルファイルを作成します。 ちなみにここからが本題です。
+
+// 書き方の注意
+// モデル名を指定（テーブル名はモデル名の複数形）
+
+php artisan krlove:generate:model User
+
+
+/*
+|--------------------------------------------------------------------------
+|
+|--------------------------------------------------------------------------
+|
+|
+|
+|
+|
+*/
+
+// モデル名とテーブル名を指定
+// 次んコマンド一発でできます。
+
+// 最初にマイグレーションで作成したテーブル名を末尾につけましょう。
+
+php artisan krlove:generate:model User --table-name=user
+
+// 自分が工数管理システムで行ったコマンド見本
+php artisan make:migration create_m_partner_table
+php artisan migrate
+
+php artisan krlove:generate:model MPartner --table-name=m_partner
+
+// 全モデルを作成
+// DB中のテーブルを全て読み取り、全てに対応するEloquentモデルが生成できる。 事前にマイグレーションファイルをすべて準備しておきましょう。
+
+// artisan krlove:generate:all-models
+// 一気に作って、転記ミスを防いでいきましょう。
+
+/*
+|--------------------------------------------------------------------------
+|
+|--------------------------------------------------------------------------
+|
+|
+|
+|
+|
+*/
+
+php artisan krlove:generate:model GoodsType --table-name=goods_types
+
+テーブル名は複数形で行う
+    4  php artisan krlove:generate:model GoodsType --table-name=goods_types
+
+
+    6  php artisan krlove:generate:model Proceed --table-name=proceeds
+    7  php artisan krlove:generate:model BandGoods --table-name=band_goods
+    8  php artisan krlove:generate:model PerformanceList --table-name=performance_lists
+    9  php artisan krlove:generate:model TicketList --table-name=ticket_lists
+
+    // マイグレーションファイルがないときは作成
+   11  php artisan migrate create_user_types_table
+//    作った場合は対応するコマンドを行う
+   12  php artisan migrate
+   16  php artisan krlove:generate:model UserType --table-name=user_types
+    7  php artisan krlove:generate:model GuestReservation --table-name=guest_reservations
+
+/*
+|--------------------------------------------------------------------------
+| コントローラーを一気に作成していきます
+|--------------------------------------------------------------------------
+|
+|
+|
+|
+|
+*/
+
+
+php artisan make:controller AlbumController --resource --model=Album
+php artisan make:controller BandGoodsController --resource --model=BandGoods
+php artisan make:controller EntryController --resource --model=Entry
+php artisan make:controller EventController --resource --model=Event
+php artisan make:controller LabelController --resource --model=Label
+php artisan make:controller GoodsTypeController --resource --model=GoodsType
+php artisan make:controller GuestReservationController --resource --model=GuestReservation
+php artisan make:controller HallController --resource --model=Hall
+php artisan make:controller MusicController --resource --model=Music
+php artisan make:controller MusicalInstrumentController --resource --model=MusicalInstrument
+php artisan make:controller PerformanceListController --resource --model=PerformanceList
+php artisan make:controller ProceedController --resource --model=Proceed
+php artisan make:controller TicketListController --resource --model=TicketList
+
+
+
+
+php artisan make:controller AlbumController --resource --model=Album && php artisan make:controller BandGoodsController --resource --model=BandGoods && php artisan make:controller EntryController --resource --model=Entry && php artisan make:controller EventController --resource --model=Event && php artisan make:controller GoodsTypeController --resource --model=GoodsType && php artisan make:controller GuestReservationController --resource --model=GuestReservation && php artisan make:controller HallController --resource --model=Hall && php artisan make:controller MusicController --resource --model=Music && php artisan make:controller MusicalInstrumentController --resource --model=MusicalInstrument && php artisan make:controller PerformanceListController --resource --model=PerformanceList && php artisan make:controller ProceedController --resource --model=Proceed && php artisan make:controller TicketListController --resource --model=TicketList
+
+
+
+/*
+|--------------------------------------------------------------------------
+|
+|--------------------------------------------------------------------------
+|
+|
+|
+|
+|
+*/

@@ -14,6 +14,9 @@ namespace App\Http\Controllers\Band\Admin;
     |
     */
 
+// ページネーションを使う時に利用
+use Illuminate\Pagination\Paginator;
+
 //コントローラーの場所を変えたときには必要になる
 use App\Http\Controllers\Controller;
 
