@@ -157,12 +157,131 @@ class MenusTableSeeder extends Seeder
         $this->endDropdown();
         // ここまでドロップダウン
 
+
+
+
+
+        $this->beginDropdown('admin', 'バンド管理', 'cil-calculator');
+
+        $this->insertLink('admin', 'ユーザー',                   '/notes');
+        $this->insertLink('admin', 'バンド',                   '/users');
+        $this->insertLink('admin', 'バンド管理者',               '/menu/menu');
+        $this->insertLink('admin', 'イベント',      '/menu/element');
+        $this->insertLink('admin', 'ホール',              '/roles');
+        $this->insertLink('admin', 'メディア',                   '/media');
+        $this->insertLink('admin', 'パンくずリスト',                   '/bread');
+        $this->insertLink('admin', 'Email',                   '/mail');
+        $this->endDropdown();
+        // ここまでドロップダウン
+
+
+        //         <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core/adminroles">
+        //         <svg class="c-sidebar-nav-icon">
+        //             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
+        //         </svg>管理役割マスタ</a></li>
+
+        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core/userroles">
+        //         <svg class="c-sidebar-nav-icon">
+        //             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
+        //         </svg>利用者役割マスタ</a></li>
+
+        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core/musicalinstrument">
+        //         <svg class="c-sidebar-nav-icon">
+        //             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
+        //         </svg>楽器マスタ</a></li>
+
+
+        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core/users">
+        //         <svg class="c-sidebar-nav-icon">
+        //             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
+        //         </svg> ユーザーマスタ</a></li>
+
+        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core/members">
+        //         <svg class="c-sidebar-nav-icon">
+        //             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
+        //         </svg> バンドメンバーマスタ</a></li>
+
+        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core/bands">
+        //         <svg class="c-sidebar-nav-icon">
+        //             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
+        //         </svg> バンド名マスタ</a></li>
+
+        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core/bandadmin">
+        //         <svg class="c-sidebar-nav-icon">
+        //             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
+        //         </svg> バンド管理者マスタ</a></li>
+
+        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core/bandgoods">
+        //         <svg class="c-sidebar-nav-icon">
+        //             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
+        //         </svg> バンドグッズマスタ</a></li>
+
+
+        //         <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core/goodstype">
+        //         <svg class="c-sidebar-nav-icon">
+        //             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
+        //         </svg> バンドグッズタイプマスタ</a></li>
+
+        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core/albums">
+        //         <svg class="c-sidebar-nav-icon">
+        //             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
+        //         </svg> アルバムマスタ</a></li>
+
+        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core/entries">
+        //         <svg class="c-sidebar-nav-icon">
+        //             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
+        //         </svg> バンドエントリー</a></li>
+
+        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core/events">
+        //         <svg class="c-sidebar-nav-icon">
+        //             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
+        //         </svg> イベントマスタ</a></li>
+
+        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core/halls">
+        //         <svg class="c-sidebar-nav-icon">
+        //             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
+        //         </svg> イベントホールマスタ</a></li>
+
+        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core/labels">
+        //         <svg class="c-sidebar-nav-icon">
+        //             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
+        //         </svg> レーベルマスタ</a></li>
+
+        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core/musics">
+        //         <svg class="c-sidebar-nav-icon">
+        //             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
+        //         </svg> 曲マスタ</a></li>
+
+        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core/performancelists">
+        //         <svg class="c-sidebar-nav-icon">
+        //             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
+        //         </svg> イベントセットリスト一覧</a></li>
+
+        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core/guestreservation">
+        //         <svg class="c-sidebar-nav-icon">
+        //             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
+        //         </svg> イベント予約状況一覧</a></li>
+
+        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core/proceeds">
+        //         <svg class="c-sidebar-nav-icon">
+        //             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
+        //         </svg> イベント売上一覧</a></li>
+
+        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core/ticketlists">
+        //         <svg class="c-sidebar-nav-icon">
+        //             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
+        //         </svg> チケットリスト一覧</a></li>
+
+
+
+
         // クリックでドロップダウン（追加機能を足していく）
         $this->insertTitle('user,admin', '追加機能(API)');
         $this->insertLink('user,admin', '名前API',    '/function/randomuser', 'cil-drop1');
         $this->insertLink('user,admin', 'DogAPI',    '/function/randomdog', 'cil-drop1');
         $this->insertLink('user,admin', 'NewsAPI',    '/function/randomnews', 'cil-drop1');
         $this->insertLink('user,admin', 'GitHubAPI',    '/function/github', 'cil-drop1');
+        $this->insertLink('user,admin', 'YoutubeAPI',    '/function/github', 'cil-drop1');
         $this->endDropdown();
 
         // ゲストメンバーのみ表示
