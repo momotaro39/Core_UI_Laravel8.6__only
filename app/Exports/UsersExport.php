@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\User;
+
 use App\Models\User; //Laravel8の場合
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;

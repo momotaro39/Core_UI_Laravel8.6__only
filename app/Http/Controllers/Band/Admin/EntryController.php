@@ -324,38 +324,4 @@ class EntryController extends Controller
     {
         //
     }
-
-    /*
-    |--------------------------------------------------------------------------
-    | ソートを設定します。
-    |--------------------------------------------------------------------------
-    |
-    | join()で連結させる外部キーとテーブルを設定します。
-    | orderBy()で優先されるカラム名を指定して、ソートをかけていきます。
-    | ※ソートの順番はindexメソッドに入力しています。
-    | ※変更する場合はここでソートの変数をセットするのも可能
-    |
-    |
-    |
-    */
-
-    /**
-     * ソートを設定します
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param string $orderBy
-     * @param string $sort
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    private function setOrderBy($query, $orderBy, $sort)
-    {
-        switch ($orderBy) {
-
-            case 'created_at':
-            default:
-                $query = $query->orderBy($orderBy, $sort);
-                break;
-        }
-        return $query;
-    }
 }

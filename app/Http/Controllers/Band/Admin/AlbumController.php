@@ -49,7 +49,7 @@ class AlbumController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request = null)
+    public function index()
     {
 
 

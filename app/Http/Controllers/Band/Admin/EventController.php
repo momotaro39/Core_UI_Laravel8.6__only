@@ -54,11 +54,10 @@ class EventController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index(Request $request)
+    public function index()
     {
 
         /***************************
-         *
          * ログインユーザーを取得してデータを利用するときに使用
          * use文に追加しておくこと
          * use Illuminate\Support\Facades\Auth;
@@ -72,66 +71,10 @@ class EventController extends Controller
          *
          *
          *****************************/
-        $adminRoles = AdminRole::get(); // 管理役割一覧を取得
-        $userRoles = UserRole::get(); // 利用役割一覧を取得
+
         $events = Event::get();
 
-        /***************************
-         *
-         * 検索するための情報は２つ用意する
-         * リクエストデータの取得
-         *
-         *****************************/
 
-        $conditions      = $request->all();
-        $originalRequest = $request;
-
-        /***************************
-         *
-         *  順番を入れ替えるために必要
-         *  順番のカラム設定・順番の昇降順
-         *
-         *****************************/
-
-        $orderby         = $request->input('orderby') ?: 'created_at';
-        $sort            = $request->input('sort') ?: 'desc';
-
-
-        /***************************
-         *
-         * フォームの選択リストを呼び出す
-         * セレクトボックスの表示
-         *
-         *****************************/
-
-
-        // $sectionList    = MSection::getSectionList(); //セクション名
-
-
-        /***************************
-         * データベースとフォームの情報を一致するものを取得
-         *  モデル名::searchByConditions($conditions);
-         *
-         * $queriesはデータベースから取得した情報の総称
-         * これがデータベースからの取得の始まり
-         * 以降が加工のための変数を追加
-         *****************************/
-
-        $queries =  Event::searchByConditions($conditions); //検索
-
-        /***************************
-         * 追加機能として利用
-         * データベースと一致した数を取得して、数を計上する。
-         *
-         *****************************/
-        $listCount       = $queries->count(); //件数取得
-
-        /***************************
-         * 追加機能として利用
-         * $sum〇〇
-         * 特定のカラムの数字を合計して出力
-         *****************************/
-        // $sumCosts        = $queries->sum('performance_production_cost');
 
         /***************************
          * 追加機能として利用
@@ -142,22 +85,26 @@ class EventController extends Controller
          *
          *****************************/
         $paginateNum     = config('const.paginate.other'); //ページ設定
+        $paginations = Event::paginate(config('const.paginate.other'));
 
-        $paginateNum     = config('const.paginate.other'); //ページ設定
+        /******************************************
+         * 条件（queryメソッドを使った書き方）
+         * 例えば、集計関数とページネーションの両方を取りたい場合はこっちがおススメ。
+         * $query = モデル名::query();
+         * $query->where('pref', '大阪府');
+         *
+         * $result_count = $query->count(); // 集計関数
+         * $users = $query->paginate(12);   // ページネーション
+         ****************************************** */
 
-        $paginateNum     = config('const.paginate.other'); //ページ設定
-        // $paginations = 〇〇::paginate(config('const.paginate.other'));
+        $query = Event::query();
 
-        /***************************
-         * 追加機能として利用
-         * 1 ソート機能を追加
-         * 2 ソートした内容をページネーションの数値で設定した表示数に区切る
-         *****************************/
-
-        $queriesList = $this->setOrderBy($queries, $orderby, $sort);
+        //全件取得
+        $eventPages = $query->get();
 
 
-        // $queriesList = $queriesList->paginate($paginateNum); //ページネーション用
+        //ページネーション
+        $eventPages = $query->orderBy('id', 'desc')->paginate($paginateNum);
 
 
         /***************************
@@ -171,27 +118,27 @@ class EventController extends Controller
             // 認証情報
             'user',
             'events',
-            // 表示リスト
-            // 'sectionList',
-            // リクエスト情報
-            'conditions',
-            // 加工情報
-            'queriesList',
+            'eventPages',
+
         );
 
         return view('MemberManagement.events.index', $requestData);
     }
 
 
+
     /*
     |--------------------------------------------------------------------------
-    | 新規投稿画面を表示
+    | 新規投稿画面を表示（create）
     |--------------------------------------------------------------------------
+    | create : 入力画面の生成とstoreへのデータの送信。
+    | 基本的に、view('MemberManagement.members.create'); viewに処理を転送しているだけ。
+    | ※ディレクトリの構造を書くだけ view('MemberManagement.members.create')
     |
     | HTTP動詞：	GET
     | URL ：	/articles/create
     | アクション ：	create
-    | 役割 ：	新規投稿画面
+    | 役割 ：	新規投稿画面|
     |
     */
 
@@ -202,23 +149,28 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        /***************************
+         * リダイレクト
+         *****************************/
+        //create.blade.phpに転送
+        return view('MemberManagement.events.create');
     }
+
+
 
     /*
     |--------------------------------------------------------------------------
-    | 新規投稿処理
+    | 新規投稿画面を表示(store)
     |--------------------------------------------------------------------------
+    | store : 情報を受け取り保存（一覧へリダイレクト）。
+    | createが投げてきた値を受け取り、DBに保存。
+    |
+    |
     |
     | HTTP動詞：	POST
-    | URL ：	/articles
+    | URL ：	/articles/
     | アクション ：	store
-    | 役割 ：	新規投稿処理
-    |
-    | 新規登録のためのバリデーションをここで設定することができます。
-    | store(Request $request)ストア関数 ユーザーが入力した情報の入っているRequestを受けます。
-    |
-    |
+    | 役割 ：	新規投稿画面
     |
     */
 
@@ -231,14 +183,129 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /***************************
+         * バリデーションセット
+         *
+         * バリデーションルールは別ファイルを作ってもOK
+         *****************************/
+
+        // バリデーションをかける情報をセット
+        $inputs = $request->all();
+
+        //バリデーションルールの明記
+        $rules = [
+            // 'name' => 'required',
+            // 'email' => 'required|email|unique:users',
+        ];
+
+        //バリデーションルールにかかった時のメッセージ
+        $messages = [
+            // 'name.required' => '名前は必須です。',
+            // 'email.required' => 'emailは必須です。',
+            // 'email.email' => 'emailの形式で入力して下さい。',
+            // 'email.unique' => 'このemailは既に登録されています。',
+        ];
+
+
+
+        /***************************
+         * バリデーションの実体はValidator::make()
+         * 評価対象
+         * 評価ルール
+         * エラーメッセージ（オプション）を渡す。
+         *
+         *
+         *****************************/
+
+        $validation = \Validator::make($inputs, $rules, $messages);
+
+        /***************************
+         *
+         * $validation-.fails()でNGだった場合
+         * 呼び出し元のviewにリダイレクト
+         * OKなら、登録処理に移ります。
+         *
+         * エラー内容および、元々の入力値を呼び出して、元のビューに戻す。
+         * ビュー側でのエラー表示等に利用することができます。
+         *
+         *****************************/
+
+        //バリデーションがかかった時のメッセージ処理
+        if ($validation->fails()) {
+            return redirect()->back()->withErrors($validation->errors())->withInput();
+        }
+
+        /***************************
+         * オブジェクト生成
+         * カラム（フィールド）を作る
+         * モデル名::create()
+         *
+         * データベースに新規登録します。
+         * バリデーションにかかっていなければ保存することができます。
+         *
+         *****************************/
+
+        //  バリデーションをかけない場合はこの方法で対応
+        // $bandMember = BandMembers::create();
+
+        $event = Event::create();
+
+
+        /***************************
+         * オブジェクトにビューからもらったFormのリクエストデータを入れる
+         * 左がオブジェクトの配列
+         * 右がリクエストの配列
+         *****************************/
+        // $event->name = $request->name;
+        // $event->email = $request->email;
+
+
+
+
+        /***************************
+         * 保存
+         * オブジェクトの配列をsaveメソッドで保存する
+         *****************************/
+
+        $event->fill()->save();
+
+
+        /***************************
+         * 追加機能として利用
+         * ページネーションの数を設定する
+         * コンフィグファイルでページ数を設定しておく。
+         *
+         * Bootstrap方式を使うpsgenate()方法も記述
+         *
+         *****************************/
+        $paginateNum     = Event::paginate(config('const.paginate.other')); //ページ設定
+
+
+
+        /***************************
+         * 追加機能として利用
+         * return view('MemberManagement.members.index', compact('bandMembers', 'AdminRoles'));
+         * まとめてセットするほうが整理しやすいのでい以下のように記述
+         * 変数の順番にセットして見やすくすること
+         *****************************/
+
+        $requestData = compact(
+            'event',
+        );
+
+        /***************************
+         * 一覧画面に遷移します。
+         *****************************/
+
+        return view('MemberManagement.events.index', $requestData);
     }
+
 
 
 
     /*
     |--------------------------------------------------------------------------
-    | 個別ページ表示の情報を表示
+    | 個別ページの詳細情報を表示(show)
     |--------------------------------------------------------------------------
     |
     | HTTP動詞：	GET
@@ -251,20 +318,45 @@ class EventController extends Controller
     /**
      * Display the specified resource.
      * 指定したリソースを表示します。
-     * 指定したリソースを表示します。
      *
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function show(Event $event)
+
+
+
+    public function show($id)
     {
-        //
+        /***************************
+         * レコードを検索
+         *****************************/
+
+        $event = Event::find($id);
+
+        /***************************
+         * 追加機能として利用
+         * return view('MemberManagement.members.index', compact('bandMembers', 'AdminRoles'));
+         * まとめてセットするほうが整理しやすいのでい以下のように記述
+         * 変数の順番にセットして見やすくすること
+         *****************************/
+
+
+        $requestData = compact(
+            'event',
+
+        );
+
+        /***************************
+         * 検索結果をビューに渡す
+         *****************************/
+
+        return view('MemberManagement.events.show', $requestData);
     }
 
 
     /*
     |--------------------------------------------------------------------------
-    | 更新画面を表示
+    | 更新画面を表示(edit)
     |--------------------------------------------------------------------------
     |
     | HTTP動詞：	GET
@@ -281,28 +373,52 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function edit(Event $event)
+    public function edit($id)
     {
-        //
+        /***************************
+         * レコードを検索
+         *****************************/
+
+        $event = Event::find($id);
+
+        /***************************
+         * 追加機能として利用
+         * return view('MemberManagement.members.index', compact('bandMembers', 'AdminRoles'));
+         * まとめてセットするほうが整理しやすいのでい以下のように記述
+         * 変数の順番にセットして見やすくすること
+         *****************************/
+
+
+        $requestData = compact(
+            'event',
+
+        );
+
+
+        /***************************
+         * idを取得して、DBから検索して検索結果をビューに渡す
+         * 個別の情報が表示される
+         *****************************/
+
+        return view('MemberManagement.events.edit', $requestData);
     }
 
 
     /*
     |--------------------------------------------------------------------------
-    | 更新処理
+    | 更新処理(update)
     |--------------------------------------------------------------------------
     |
     | HTTP動詞：	PUT/PATCH
     | URL ：	/articles/{article}
     | アクション ：	update
     | 役割 ：	更新処理
-
     |
     */
 
+
     /**
      * Update the specified resource in storage.
-     * ストレージ内の指定されたリソースを更新します。
      * ストレージ内の指定されたリソースを更新します。
      *
      *
@@ -310,16 +426,55 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Event $event)
+    public function update(Request $request, $id)
     {
-        //
+
+        /***************************
+         * レコードを検索
+         *****************************/
+
+        $event = Event::find($id);
+
+        /***************************
+         * 変更した情報を一気に上書きするために
+         * リクエスト情報を全て取得する
+         *****************************/
+
+        // バリデーションをかけた情報をセット
+        $inputs = $request->all();
+        /***************************
+         * 値を代入
+         * find()したデータにリクエストの情報を入力
+         * 個別に入れたい場合あはリクエストとレコード情報を一致させて
+         * 上書きするものを決める。
+         *
+         * 面倒なので、まとめて上書きの方法で決定します。
+         *****************************/
+
+        // $event->name = $request->name;
+
+        dd($inputs);
+        /***************************
+         * 保存
+         * オブジェクトの配列をsaveメソッドで保存する
+         *****************************/
+
+        $event->fill($inputs)->save();
+
+        /***************************
+         * セーブしたら最初のページに返してあげる
+         * redirect()メソッドを利用する
+         *****************************/
+
+        //リダイレクト
+        return redirect()->to('/core/events');
     }
 
 
 
     /*
     |--------------------------------------------------------------------------
-    | 削除処理
+    | 削除処理(destoroy)
     |--------------------------------------------------------------------------
     |
     | HTTP動詞：	DELETE
@@ -329,6 +484,7 @@ class EventController extends Controller
     |
     */
 
+
     /**
      * Remove the specified resource from storage.
      * 指定されたリソースをストレージから削除します。 指定されたリソースをストレージから削除します。
@@ -336,42 +492,24 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Event $event)
+    public function destroy($id)
     {
-        //
-    }
+        /***************************
+         * 削除対象レコードを検索
+         *****************************/
+        $event = Event::find($id);
+        /***************************
+         * 削除
+         *
+         *****************************/
+        $event->delete();
 
-    /*
-    |--------------------------------------------------------------------------
-    | ソートを設定します。
-    |--------------------------------------------------------------------------
-    |
-    | join()で連結させる外部キーとテーブルを設定します。
-    | orderBy()で優先されるカラム名を指定して、ソートをかけていきます。
-    | ※ソートの順番はindexメソッドに入力しています。
-    | ※変更する場合はここでソートの変数をセットするのも可能
-    |
-    |
-    |
-    */
+        /***************************
+         * セーブしたら最初のページに返してあげる
+         * redirect()メソッドを利用する
+         *****************************/
 
-    /**
-     * ソートを設定します
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param string $orderBy
-     * @param string $sort
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    private function setOrderBy($query, $orderBy, $sort)
-    {
-        switch ($orderBy) {
-
-            case 'created_at':
-            default:
-                $query = $query->orderBy($orderBy, $sort);
-                break;
-        }
-        return $query;
+        //リダイレクト
+        return redirect()->to('/core/events');
     }
 }

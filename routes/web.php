@@ -5,7 +5,7 @@
 | モデルの場所追加
 |--------------------------------------------------------------------------
 |
-|
+| App\Http\Controllers が頭についてるっぽい
 |
 |
 |
@@ -16,27 +16,22 @@ use App\Http\Controllers\TodoController;
 
 
 
-use App\Http\Controllers\Band\Admin\UserRoleController;
-use App\Http\Controllers\Band\Admin\UserController;
-use App\Http\Controllers\Band\Admin\AlbumController;
-use App\Http\Controllers\Band\Admin\BandMemberController;
-use App\Http\Controllers\Band\Admin\BandGoodsController;
-use App\Http\Controllers\Band\Admin\EntryController;
-use App\Http\Controllers\Band\Admin\EventController;
-use App\Http\Controllers\Band\Admin\GoodsTypeController;
-use App\Http\Controllers\Band\Admin\GuestReservationController;
-use App\Http\Controllers\Band\Admin\LabelController;
-use App\Http\Controllers\Band\Admin\HallController;
-use App\Http\Controllers\Band\Admin\MusicController;
-use App\Http\Controllers\Band\Admin\MusicalInstrumentController;
-use App\Http\Controllers\Band\Admin\PerformanceListController;
-use App\Http\Controllers\Band\Admin\ProceedController;
-use App\Http\Controllers\Band\Admin\TicketListController;
-
-
-
-
-
+use \Band\Admin\UserRoleController;
+use \Band\Admin\UserController;
+use \Band\Admin\AlbumController;
+use \Band\Admin\BandMemberController;
+use \Band\Admin\BandGoodsController;
+use \Band\Admin\EntryController;
+use \Band\Admin\EventController;
+use \Band\Admin\GoodsTypeController;
+use \Band\Admin\GuestReservationController;
+use \Band\Admin\LabelController;
+use \Band\Admin\HallController;
+use \Band\Admin\MusicController;
+use \Band\Admin\MusicalInstrumentController;
+use \Band\Admin\PerformanceListController;
+use \Band\Admin\ProceedController;
+use \Band\Admin\TicketListController;
 
 
 
@@ -79,7 +74,7 @@ Route::group(['middleware' => ['get.menu']], function () {
     });
 
     // Laravel_Excel追加
-    Route::get('excelusers', [ExcelUsersController::class, 'export']);
+    // Route::get('excelusers', [ExcelUsersController::class, 'export']);
 
     //user権限のみ
     Route::group(['middleware' => ['role:user']], function () {
@@ -278,7 +273,7 @@ Route::group(['middleware' => ['get.menu']], function () {
 
             // バンドメンバー
             // namespaceに書いていない場合はこの書き方でもOK
-            Route::resource('/members', \App\Http\Controllers\Band\Admin\BandMemberController::class)->middleware('auth');
+            Route::resource('/members', '\App\Http\Controllers\Band\Admin\BandMemberController')->middleware('auth');
 
 
             // ユーザー

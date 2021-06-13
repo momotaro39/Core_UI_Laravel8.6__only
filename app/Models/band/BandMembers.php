@@ -179,17 +179,17 @@ class BandMembers extends Model
     |
     */
 
-  // 「１対１」→ メソッド名は単数形
-  Public function band()
-  {
-    return $this->belongsTo(Band::class);
-  }
+    // 「１対１」→ メソッド名は単数形
+    public function band()
+    {
+        return $this->belongsTo(Band::class);
+    }
 
-  // 「１対１」→ メソッド名は単数形
-  Public function musical_instrument()
-  {
-    return $this->belongsTo(MusicalInstrument::class);
-  }
+    // 「１対１」→ メソッド名は単数形
+    public function musical_instrument()
+    {
+        return $this->belongsTo(MusicalInstrument::class);
+    }
 
 
     public function user()
@@ -499,5 +499,4 @@ class BandMembers extends Model
     | $sectionList = MSection::getSectionList();  //見本
     |
     */
-
 }

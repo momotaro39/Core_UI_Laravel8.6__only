@@ -40,7 +40,7 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        return view('dashboard.admin.userShow', compact( 'user' ));
+        return view('dashboard.admin.userShow', compact('user'));
     }
 
     /**
@@ -68,10 +68,14 @@ class UsersController extends Controller
             'name'       => 'required|min:1|max:256',
             'email'      => 'required|email|max:256'
         ]);
+
         $user = User::find($id);
+
         $user->name       = $request->input('name');
         $user->email      = $request->input('email');
+
         $user->save();
+
         $request->session()->flash('message', 'Successfully updated user');
         return redirect()->route('users.index');
     }
@@ -85,7 +89,7 @@ class UsersController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
-        if($user){
+        if ($user) {
             $user->delete();
         }
         return redirect()->route('users.index');

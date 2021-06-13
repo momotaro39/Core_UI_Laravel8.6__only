@@ -1,64 +1,62 @@
-@extends('layouts.core_ui_set.core_layout')
+@extends('dashboard.base')
 {{-- ページのタイトルを挿入 --}}
 @section('title', 'イベントセットリスト一覧ページ')
-    {{-- メインコンテンツの内容を入れていきます --}}
+{{-- メインコンテンツの内容を入れていきます --}}
 @section('content')
-    <div class="container-fluid">
+<div class="container-fluid">
 
 
 
-            {{-- ここまからカード1 --}}
-            <div class="row">
-                <div class="col-lg-12" style="user-select: auto;">
-                    <div class="card" style="user-select: auto;">
-                        <div class="card-header" style="user-select: auto;"><i class="fa fa-align-justify"
-                                style="user-select: auto;"></i> イベントセットリスト</div>
-                        <div class="card-body" style="user-select: auto;">
-                            <table class="table table-responsive-sm table-bordered table-striped table-sm"
-                                style="user-select: auto;">
-                                <thead style="user-select: auto;">
-                                    <tr style="user-select: auto;">
-                                        <th style="user-select: auto;">演奏順番</th>
-                                        <th style="user-select: auto;">曲名</th>
-                                        <th style="user-select: auto;">バンド名</th>
-                                    </tr>
-                                </thead>
-                                <tbody style="user-select: auto;">
-                                    <tr style="user-select: auto;">
+    {{-- ここまからカード1 --}}
+    <div class="row">
+        <div class="col-lg-12" style="user-select: auto;">
+            <div class="card" style="user-select: auto;">
+                <div class="card-header" style="user-select: auto;"><i class="fa fa-align-justify" style="user-select: auto;"></i> イベントセットリスト</div>
+                <div class="card-body" style="user-select: auto;">
+                    <table class="table table-responsive-sm table-bordered table-striped table-sm" style="user-select: auto;">
+                        <thead style="user-select: auto;">
+                            <tr style="user-select: auto;">
+                                <th style="user-select: auto;">演奏順番</th>
+                                <th style="user-select: auto;">曲名</th>
+                                <th style="user-select: auto;">バンド名</th>
+                            </tr>
+                        </thead>
+                        <tbody style="user-select: auto;">
+                            <tr style="user-select: auto;">
 
-                                        @foreach ($performanceLists as $performanceList)
-                                    </tr>
-                                    <tr style="user-select: auto;">
-                                        <td style="user-select: auto;">{{$performanceList->performance_order}}</td>
-                                        <td style="user-select: auto;">{{$performanceList->music_id}}</td>
-                                        <td style="user-select: auto;">{{$performanceList->band_id}}</td>
-                                        @endforeach
-                                    </tr>
-                                </tbody>
-                            </table>
+                                @foreach ($performanceLists as $performanceList)
+                            </tr>
+                            <tr style="user-select: auto;">
+                                <td style="user-select: auto;">{{$performanceList->performance_order}}</td>
+                                <td style="user-select: auto;">{{$performanceList->music_id}}</td>
+                                <td style="user-select: auto;">{{$performanceList->band_id}}</td>
+                                @endforeach
+                            </tr>
+                        </tbody>
+                    </table>
 
-                            {{-- ページネーション --}}
+                    {{-- ページネーション --}}
 
-                            @include('layouts.core_ui_set.pagination')
+                    @include('layouts.core_ui_set.pagination')
 
-                            {{-- ページネーションここまで --}}
-                        </div>
-                    </div>
+                    {{-- ページネーションここまで --}}
                 </div>
             </div>
-            {{-- ここまでカード1 --}}
-
-
-
-
-
+        </div>
     </div>
+    {{-- ここまでカード1 --}}
+
+
+
+
+
+</div>
 
 
 @endsection
 
 
 @section('add-script')
-    {{-- このページに必要なスクリプトがあれば以下に追加 --}}
+{{-- このページに必要なスクリプトがあれば以下に追加 --}}
 
 @endsection
