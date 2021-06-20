@@ -67,8 +67,10 @@ use Illuminate\Database\Eloquent\Model;
 
 //リレーションディレクトリの指定（RDB）
 use App\Models\band\Band;
+use App\Models\band\Event;
+use App\Models\User;
 
-    /*
+/*
     |--------------------------------------------------------------------------
     |
     | プロパティの「型」を定義する
@@ -465,6 +467,27 @@ class GuestReservation extends Model
     |
     */
 
+    /**
+     * ユーザーIDから名前を表示
+     * リレーションを確認すること
+     *
+     *
+     */
+    public function getUserNameAttribute()
+    {
+        return isset($this->user)  ? $this->user->name : null;
+    }
+
+    /**
+     * イベントIDから名前を表示
+     * リレーションを確認すること
+     *
+     *
+     */
+    public function geteventNameAttribute()
+    {
+        return isset($this->event)  ? $this->event->name : null;
+    }
 
 
     /*
@@ -479,5 +502,4 @@ class GuestReservation extends Model
     | $sectionList = MSection::getSectionList();  //見本
     |
     */
-
 }

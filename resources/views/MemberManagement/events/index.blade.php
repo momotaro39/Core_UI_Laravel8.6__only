@@ -7,9 +7,14 @@
 
     <div class="row">
         <div class="col-sm-12">
-            <a href="/core/events/create" class="btn btn-primary" style="margin:20px;">新規登録</a>
+            {{-- formのアクション設定 --}}
+            <a href="{{ route("events.create") }}" class="btn btn-primary" style="margin:20px;">新規登録</a>
+
+            {{-- formのアクション設定ここまで --}}
         </div>
     </div>
+    {{-- </form> --}}
+    {{-- formのアクション設定ここまで --}}
 
     {{-- ここから検索項目設定 --}}
     <div class="card" style="user-select: auto;">
@@ -17,13 +22,18 @@
         </div>
         <div class="card-body" style="user-select: auto;">
             {{-- formのアクション設定 --}}
-            <form class="form-horizontal" action="" method="post" style="user-select: auto;">
+            <form action="{{ route('events.index') }}" method="post">
+                <!-- formデータ hiddenを設定 -->
+                @csrf
+                <!-- formデータ methodを設定 擬似フォームメソッド HTMLフォームはPUT、PATCH、DELETEアクションをサポートしていません。 -->
+                @method('POST')
+
                 <div class="form-group row" style="user-select: auto;">
                     <label class="col-sm-5 col-form-label" for="input-normal" style="user-select: auto;">
                         イベント名</label>
                     <div class="col-sm-6" style="user-select: auto;">
-                        <input class="form-control" id="input-normal" type="text" name="input-normal"
-                            placeholder="Normal" style="user-select: auto;">
+                        <input class="form-control" id="input-normal" type="text" name="name" placeholder="Normal"
+                            style="user-select: auto;">
                     </div>
                 </div>
                 <div class="form-group row" style="user-select: auto;">
@@ -58,13 +68,14 @@
                             placeholder="Normal" style="user-select: auto;">
                     </div>
                 </div>
-
-            </form>
         </div>
         <div class="card-footer" style="user-select: auto;">
             <button class="btn btn-sm btn-primary" type="submit" style="user-select: auto;"> 検索</button>
             <button class="btn btn-sm btn-danger" type="reset" style="user-select: auto;"> クリア</button>
         </div>
+
+        </form>
+        {{-- formのアクション設定ここまで --}}
     </div>
     {{-- ここまで検索項目設定 --}}
 
@@ -85,33 +96,24 @@
                                 <th style="user-select: auto;">売上状況 プログレスバー</th>
                                 <th style="user-select: auto;">詳細</th>
                                 <th style="user-select: auto;">編集</th>
-                                <th style="user-select: auto;">削除</th>
                             </tr>
                         </thead>
                         <tbody style="user-select: auto;">
                             <tr style="user-select: auto;">
 
-                                @foreach ($events as $event)
+                                @foreach ($querySearchResults as $querySearchResult)
                             </tr>
                             <tr style="user-select: auto;">
-                                <td style="user-select: auto;">{{$event->name}}</td>
-                                <td style="user-select: auto;">{{$event->hall->name}}</td>
+                                <td style="user-select: auto;">{{ $querySearchResult->name }}</td>
+                                <td style="user-select: auto;">{{ $querySearchResult->hall->name }}</td>
                                 <td style="user-select: auto;">テキスト3</td>
-                                <td><a href="/core/events/{{$event->id}}" class="btn btn-primary btn-sm">詳細</a>
+                                <td><a href="{{ route('events.show', $querySearchResult->id) }}"
+                                        class="btn btn-primary btn-sm">詳細</a>
                                 </td>
-                                <td><a href="/core/events/{{$event->id}}/edit" class="btn btn-primary btn-sm">編集</a>
+                                <td><a href="{{ route('events.edit', $querySearchResult->id) }}"
+                                        class="btn btn-primary btn-sm">編集</a>
                                 </td>
-                                <td>
 
-                                    <form action="/core/events/{{$event->id}}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <input type="submit" name="" value="削除"
-                                            class="btn btn-danger btn-sm btn-destroy">
-                                    </form>
-
-
-                                </td>
                                 @endforeach
                             </tr>
                         </tbody>
@@ -135,12 +137,6 @@
 
 </div>
 
-
-@endsection
-
-
-@section('add-script')
-{{-- このページに必要なスクリプトがあれば以下に追加 --}}
 <script>
 $(function() {
     $(".btn-destroy").click(function() {
@@ -153,4 +149,10 @@ $(function() {
     });
 });
 </script>
+@endsection
+
+
+@section('add-script')
+{{-- このページに必要なスクリプトがあれば以下に追加 --}}
+
 @endsection

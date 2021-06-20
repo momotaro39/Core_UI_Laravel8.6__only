@@ -27,8 +27,10 @@
 
                     <!-- formデータスタート -->
                     <!-- form Editの時はPUT -->
-                    <form class="form-horizontal" action="{event}" enctype="multipart/form-data">
 
+                    <form class="form-horizontal" action="{{ route("events.update",  $event->id) }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
                         <!-- formデータ hiddenを設定 -->
                         @csrf
                         <!-- formデータ methodを設定 -->
@@ -45,8 +47,7 @@
                             <label class="col-md-3 col-form-label" for="text-input">イベント名</label>
                             <div class="col-md-9">
 
-                                <input class="form-control" id="text-input" type="text" value="{{$event->name}}"
-                                    name="name" placeholder="">
+                                <input class="form-control" id="text-input" type="text" value="{{$event->name}}" name="name" placeholder="">
 
                                 <span class="help-block">００を入力してください</span>
                             </div>
@@ -54,8 +55,7 @@
                         <div class="form-group row">
                             <label class="col-md-3 col-form-label" for="email-input">ホール</label>
                             <div class="col-md-9">
-                                <input class="form-control" id="text-input" type="text" value="{{$event->hall->name}}"
-                                    name="" placeholder="" autocomplete="email">
+                                <input class="form-control" id="text-input" type="text" value="{{$event->hall->name}}" name="" placeholder="" autocomplete="email">
                                 <span class="help-block">※ホール一覧を取得します ホール名を入力してください。</span>
                             </div>
                         </div>

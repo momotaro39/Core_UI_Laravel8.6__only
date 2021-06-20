@@ -15,9 +15,6 @@ namespace App\Http\Controllers\Band\Admin;
     |
     */
 
-// ページネーションを使う時に利用
-use Illuminate\Pagination\Paginator;
-
 //コントローラーの場所を変えたときには必要になる
 use App\Http\Controllers\Controller;
 
@@ -66,30 +63,10 @@ class GuestReservationController extends Controller
          *
          *
          *****************************/
-        $adminRoles = AdminRole::get(); // 管理役割一覧を取得
-        $userRoles = UserRole::get(); // 利用役割一覧を取得
+
         $guestReservations = GuestReservation::get();
 
-        /***************************
-         *
-         * 検索するための情報は２つ用意する
-         * リクエストデータの取得
-         *
-         *****************************/
-
-        $conditions      = $request->all();
-        $originalRequest = $request;
-
-        /***************************
-         *
-         *  順番を入れ替えるために必要
-         *  順番のカラム設定・順番の昇降順
-         *
-         *****************************/
-
-        $orderby         = $request->input('orderby') ?: 'created_at';
-        $sort            = $request->input('sort') ?: 'desc';
-
+        $query = GuestReservation::query();
 
         /***************************
          *
@@ -102,23 +79,8 @@ class GuestReservationController extends Controller
         // $sectionList    = MSection::getSectionList(); //セクション名
 
 
-        /***************************
-         * データベースとフォームの情報を一致するものを取得
-         *  モデル名::searchByConditions($conditions);
-         *
-         * $queriesはデータベースから取得した情報の総称
-         * これがデータベースからの取得の始まり
-         * 以降が加工のための変数を追加
-         *****************************/
 
-        $queries =  GuestReservation::searchByConditions($conditions); //検索
 
-        /***************************
-         * 追加機能として利用
-         * データベースと一致した数を取得して、数を計上する。
-         *
-         *****************************/
-        $listCount       = $queries->count(); //件数取得
 
         /***************************
          * 追加機能として利用
@@ -130,25 +92,15 @@ class GuestReservationController extends Controller
         /***************************
          * 追加機能として利用
          * ページネーションの数を設定する
-         * コンフィグファイルでページ数を設定しておく。
-         *
-         * Bootstrap方式を使うpsgenate()方法も記述
-         *
+         * コンフィグファイルでページ数を設定しておく
          *****************************/
         $paginateNum     = config('const.paginate.other'); //ページ設定
-
-        $paginateNum     = config('const.paginate.other'); //ページ設定
-
-        $paginateNum     = config('const.paginate.other'); //ページ設定
-        // $paginations = 〇〇::paginate(config('const.paginate.other'));
 
         /***************************
          * 追加機能として利用
          * 1 ソート機能を追加
          * 2 ソートした内容をページネーションの数値で設定した表示数に区切る
          *****************************/
-
-        $queriesList = $this->setOrderBy($queries, $orderby, $sort);
 
 
         // $queriesList = $queriesList->paginate($paginateNum); //ページネーション用
@@ -166,15 +118,14 @@ class GuestReservationController extends Controller
             // 認証情報
             'user',
             'guestReservations',
+
             // 表示リスト
             // 'sectionList',
             // リクエスト情報
-            'conditions',
-            // 加工情報
-            'queriesList',
-        );
 
-        return view('MemberManagement.guestreservations.index', $requestData);
+        );
+        // dd($requestData);
+        return view('MemberManagement.GuestReservations.index', $requestData);
     }
 
 
@@ -197,7 +148,11 @@ class GuestReservationController extends Controller
      */
     public function create()
     {
-        //
+        /***************************
+         * リダイレクト
+         *****************************/
+        //create.blade.phpに転送
+        return view('MemberManagement.GuestReservations.create');
     }
 
     /*
@@ -224,34 +179,98 @@ class GuestReservationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
-        //
+        /***************************
+         * バリデーションセット
+         *
+         * バリデーションルールは別ファイルを作ってもOK
+         *****************************/
+
+        // バリデーションをかける情報をセット
+        $inputs = $request->all();
+
+
+        /***************************
+         * オブジェクト生成
+         * カラム（フィールド）を作る
+         * モデル名::create()
+         *
+         * データベースに新規登録します。
+         * バリデーションにかかっていなければ保存することができます。
+         *
+         *****************************/
+
+        //  バリデーションをかけない場合はこの方法で対応
+        // $bandMember = BandMembers::create();
+
+        // $event = Event::create($request->all());
+
+        // $event = Event::create();
+        $guestReservation =  GuestReservation::create($request->all());
+
+        /***************************
+         * オブジェクトにビューからもらったFormのリクエストデータを入れる
+         * 左がオブジェクトの配列
+         * 右がリクエストの配列
+         *****************************/
+        $guestReservation->user_id = $request->user_id;
+        $guestReservation->event_id = $request->event_id;
+
+
+
+
+        /***************************
+         * 保存
+         * オブジェクトの配列をsaveメソッドで保存する
+         *****************************/
+
+        $guestReservation->save();
+
+
+        /***************************
+         * 追加機能として利用
+         * ページネーションの数を設定する
+         * コンフィグファイルでページ数を設定しておく。
+         *
+         * Bootstrap方式を使うpsgenate()方法も記述
+         *
+         *****************************/
+        $paginateNum     = GuestReservation::paginate(config('const.paginate.other')); //ページ設定
+
+
+        /***************************
+         *
+         *  データベースから必要な情報を取得
+         *  一覧の全表示のために必要
+         *
+         *****************************/
+
+        $guestReservations = GuestReservation::get();
+
+
+
+        /***************************
+         * 追加機能として利用
+         * return view('MemberManagement.members.index', compact('bandMembers', 'AdminRoles'));
+         * まとめてセットするほうが整理しやすいのでい以下のように記述
+         * 変数の順番にセットして見やすくすること
+         *****************************/
+
+        $requestData = compact(
+            'guestReservations',
+            'guestReservation',
+        );
+
+        /***************************
+         * 一覧画面に遷移します。
+         *****************************/
+
+        return view('MemberManagement.GuestReservations.index', $requestData);
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | 個別ページ表示の情報を表示
-    |--------------------------------------------------------------------------
-    |
-    | HTTP動詞：	GET
-    | URL ：	/articles/{article}
-    | アクション ：	show
-    | 役割 ：	個別ページ表示
-    |
-    */
 
-    /**
-     * Display the specified resource.
-     * 指定したリソースを表示します。
-     *
-     * @param  \App\Models\GuestReservation  $guestReservation
-     * @return \Illuminate\Http\Response
-     */
-    public function show(GuestReservation $guestReservation)
-    {
-        //
-    }
 
     /*
     |--------------------------------------------------------------------------
@@ -271,9 +290,33 @@ class GuestReservationController extends Controller
      * @param  \App\Models\GuestReservation  $guestReservation
      * @return \Illuminate\Http\Response
      */
-    public function edit(GuestReservation $guestReservation)
+    public function edit($id)
     {
-        //
+        /***************************
+         * レコードを検索
+         *****************************/
+
+        $guestReservation = GuestReservation::find($id);
+
+        /***************************
+         * 追加機能として利用
+         * return view('MemberManagement.members.index', compact('bandMembers', 'AdminRoles'));
+         * まとめてセットするほうが整理しやすいのでい以下のように記述
+         * 変数の順番にセットして見やすくすること
+         *****************************/
+
+
+        $requestData = compact(
+            'guestReservation',
+        );
+
+
+        /***************************
+         * idを取得して、DBから検索して検索結果をビューに渡す
+         * 個別の情報が表示される
+         *****************************/
+
+        return view('MemberManagement.GuestReservation.edit', $requestData);
     }
 
     /*
@@ -297,10 +340,56 @@ class GuestReservationController extends Controller
      * @param  \App\Models\GuestReservation  $guestReservation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, GuestReservation $guestReservation)
+    public function update(Request $request, $id)
     {
-        //
+
+        /***************************
+         * レコードを検索
+         *****************************/
+
+        $guestReservation = GuestReservation::find($id);
+
+        /***************************
+         * 変更した情報を一気に上書きするために
+         * リクエスト情報を全て取得する
+         *****************************/
+
+        // バリデーションをかけた情報をセット
+        $inputs = $request->all();
+        /***************************
+         * 値を代入
+         * find()したデータにリクエストの情報を入力
+         * 個別に入れたい場合あはリクエストとレコード情報を一致させて
+         * 上書きするものを決める。
+         *
+         * 面倒なので、まとめて上書きの方法で決定します。
+         *****************************/
+
+        // $guestReservation->name = $request->name;
+
+        /***************************
+         * 保存
+         * オブジェクトの配列をsaveメソッドで保存する
+         *****************************/
+
+        $guestReservation->fill($inputs)->update();
+
+
+        /***************************
+         * 保存方式2つめ
+         * オブジェクトの配列をupdateメソッドで保存する
+         *****************************/
+        // GuestReservation::where('id', $id)->update($request->all());
+        /***************************
+         * セーブしたら最初のページに返してあげる
+         * redirect()メソッドを利用する
+         *****************************/
+
+        //リダイレクト
+        return redirect()->to('/core/guestreservation');
     }
+
+
 
     /*
     |--------------------------------------------------------------------------
@@ -320,42 +409,29 @@ class GuestReservationController extends Controller
      * @param  \App\Models\GuestReservation  $guestReservation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(GuestReservation $guestReservation)
+    public function destroy($id)
     {
-        //
-    }
+        /***************************
+         * 削除対象レコードを検索
+         *****************************/
+        $guestReservation = GuestReservation::find($id);
+        /***************************
+         * 削除方式1
+         *
+         *****************************/
+        $guestReservation->delete();
 
-    /*
-    |--------------------------------------------------------------------------
-    | ソートを設定します。
-    |--------------------------------------------------------------------------
-    |
-    | join()で連結させる外部キーとテーブルを設定します。
-    | orderBy()で優先されるカラム名を指定して、ソートをかけていきます。
-    | ※ソートの順番はindexメソッドに入力しています。
-    | ※変更する場合はここでソートの変数をセットするのも可能
-    |
-    |
-    |
-    */
+        /***************************
+         * 削除方式2
+         *合体版
+         *****************************/
+        // GuestReservation::where('id', $id)->delete();
+        /***************************
+         * セーブしたら最初のページに返してあげる
+         * redirect()メソッドを利用する
+         *****************************/
 
-    /**
-     * ソートを設定します
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param string $orderBy
-     * @param string $sort
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    private function setOrderBy($query, $orderBy, $sort)
-    {
-        switch ($orderBy) {
-
-            case 'created_at':
-            default:
-                $query = $query->orderBy($orderBy, $sort);
-                break;
-        }
-        return $query;
+        //リダイレクト
+        return redirect()->to('/core/guestReservation');
     }
 }

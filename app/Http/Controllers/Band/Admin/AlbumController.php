@@ -15,9 +15,6 @@ namespace App\Http\Controllers\Band\Admin;
     |
     */
 
-// ページネーションを使う時に利用
-use Illuminate\Pagination\Paginator;
-
 //コントローラーの場所を変えたときには必要になる
 use App\Http\Controllers\Controller;
 
@@ -49,7 +46,7 @@ class AlbumController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request = null)
     {
 
 
@@ -94,6 +91,8 @@ class AlbumController extends Controller
             'queriesList',
         );
         return view('MemberManagement.albums.index', $requestData);
+
+
     }
 
 
@@ -172,7 +171,7 @@ class AlbumController extends Controller
         //
     }
 
-    /*
+   /*
     |--------------------------------------------------------------------------
     | 更新画面を表示
     |--------------------------------------------------------------------------
@@ -278,4 +277,6 @@ class AlbumController extends Controller
         }
         return $query;
     }
+
+
 }

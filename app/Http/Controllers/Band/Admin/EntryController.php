@@ -14,9 +14,6 @@ namespace App\Http\Controllers\Band\Admin;
     |
     */
 
-// ページネーションを使う時に利用
-use Illuminate\Pagination\Paginator;
-
 //コントローラーの場所を変えたときには必要になる
 use App\Http\Controllers\Controller;
 
@@ -129,17 +126,9 @@ class EntryController extends Controller
         /***************************
          * 追加機能として利用
          * ページネーションの数を設定する
-         * コンフィグファイルでページ数を設定しておく。
-         *
-         * Bootstrap方式を使うpsgenate()方法も記述
-         *
+         * コンフィグファイルでページ数を設定しておく
          *****************************/
         $paginateNum     = config('const.paginate.other'); //ページ設定
-
-        $paginateNum     = config('const.paginate.other'); //ページ設定
-
-        $paginateNum     = config('const.paginate.other'); //ページ設定
-        // $paginations = 〇〇::paginate(config('const.paginate.other'));
 
         /***************************
          * 追加機能として利用
@@ -175,6 +164,7 @@ class EntryController extends Controller
 
 
         return view('MemberManagement.entries.index', $requestData);
+
     }
 
 
@@ -253,7 +243,7 @@ class EntryController extends Controller
         //
     }
 
-    /*
+   /*
     |--------------------------------------------------------------------------
     | 更新画面を表示
     |--------------------------------------------------------------------------
@@ -324,4 +314,40 @@ class EntryController extends Controller
     {
         //
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | ソートを設定します。
+    |--------------------------------------------------------------------------
+    |
+    | join()で連結させる外部キーとテーブルを設定します。
+    | orderBy()で優先されるカラム名を指定して、ソートをかけていきます。
+    | ※ソートの順番はindexメソッドに入力しています。
+    | ※変更する場合はここでソートの変数をセットするのも可能
+    |
+    |
+    |
+    */
+
+    /**
+     * ソートを設定します
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string $orderBy
+     * @param string $sort
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    private function setOrderBy($query, $orderBy, $sort)
+    {
+        switch ($orderBy) {
+
+            case 'created_at':
+            default:
+                $query = $query->orderBy($orderBy, $sort);
+                break;
+        }
+        return $query;
+    }
+
+
 }

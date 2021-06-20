@@ -14,8 +14,10 @@
                 <div class="card-header" style="user-select: auto;"><i class="fa fa-align-justify" style="user-select: auto;"></i> イベント詳細</div>
                 <div class="card-body" style="user-select: auto;">
                     <table class="table table-responsive-sm table-bordered table-striped table-sm" style="user-select: auto;">
-                        <p>イベント名称</p>
+
+                        <p>{{ $event->name }}</p>
                         <thead style="user-select: auto;">
+
                             <tr style="user-select: auto;">
                                 <th style="user-select: auto;">イベント日</th>
                                 <th style="user-select: auto;">開場時間</th>
@@ -31,13 +33,12 @@
 
                             </tr>
                             <tr style="user-select: auto;">
-                                <td style="user-select: auto;">テキスト1</td>
-                                <td style="user-select: auto;">テキスト2</td>
-                                <td style="user-select: auto;">テキスト3</td>
-                                <td style="user-select: auto;">テキスト4</td>
-                                <td style="user-select: auto;">テキスト5</td>
-                                <td style="user-select: auto;">テキスト6</td>
-
+                                <td style="user-select: auto;">{{ $event->event_date }}</td>
+                                <td style="user-select: auto;">{{ $event->event_opening_time }}</td>
+                                <td style="user-select: auto;">{{ $event->event_start_time }}</td>
+                                <td style="user-select: auto;">{{ $event->event_end_time }}</td>
+                                <td style="user-select: auto;">{{ $event->reservation_start }}</td>
+                                <td style="user-select: auto;">{{ $event->reservation_end }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -56,9 +57,9 @@
                             <tr style="user-select: auto;">
                             </tr>
                             <tr style="user-select: auto;">
-                                <td style="user-select: auto;">テキスト1</td>
-                                <td style="user-select: auto;">テキスト2</td>
-                                <td style="user-select: auto;">テキスト3</td>
+                                <td style="user-select: auto;">{{ $event->hall->name }}</td>
+                                <td style="user-select: auto;">{{ $event->hall->address }}</td>
+                                <td style="user-select: auto;">{{ $event->hall->station }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -79,8 +80,8 @@
                             <tr style="user-select: auto;">
                             </tr>
                             <tr style="user-select: auto;">
-                                <td style="user-select: auto;">テキスト1</td>
-                                <td style="user-select: auto;">テキスト2</td>
+                                <td style="user-select: auto;">テキスト3</td>
+                                <td style="user-select: auto;">{{ $event->ticket }}</td>
                                 <td style="user-select: auto;">テキスト3</td>
                                 <td style="user-select: auto;">テキスト4</td>
 

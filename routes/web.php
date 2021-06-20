@@ -256,7 +256,7 @@ Route::group(['middleware' => ['get.menu']], function () {
 
             // TOP画面
 
-            // Route::get('/top_page', [\App\Http\Controllers\TopPageController::class, 'top_page'])->name('top_page');
+            Route::get('/top_page', [\App\Http\Controllers\TopPageController::class, 'top_page'])->name('top_page');
 
 
             // システム役割
@@ -279,30 +279,57 @@ Route::group(['middleware' => ['get.menu']], function () {
             // ユーザー
             // Route::get('/users', 'App\Http\Controllers\Band\Admin\UserController')->name('ユーザー一覧')->middleware('auth');
 
+            // グループルーティング前の名前付きルートを設定する  参照先 https://readouble.com/laravel/8.x/ja/routing.html
+            Route::post('/events/table', '\App\Http\Controllers\Band\Admin\EventController@tableAdd')->name('table');
 
-            // まとめて設定することができる
+
+
+
+            // まとめて設定することができる。６種類のルートを使う場合に使用。詳細だけいらない。インデックスだけ必要な場合は部分的なリソースルートかルーティングの個別に作成したほうが楽
             Route::resources([
                 // '/users'            => UserController::class,
-                '/bands'            => BandMemberController::class,
-                '/bandgoods'        => BandGoodsController::class,
-                '/albums'           => AlbumController::class,
-                '/entries'          => EntryController::class,
-                '/events'           => EventController::class,
-                '/goodstype'        => GoodsTypeController::class,
-                '/guestreservation' => GuestReservationController::class,
-                '/halls'            => HallController::class,
-                '/labels'           => LabelController::class,
-                '/musics'           => MusicController::class,
-                '/musicalinstrument' => MusicalInstrumentController::class,
-                '/performancelists' => PerformanceListController::class,
-                '/proceeds'         => ProceedController::class,
-                '/ticketlists'      => TicketListController::class,
+                'bands'            => BandMemberController::class,
+                // 'bandgoods'        => BandGoodsController::class,
+                'albums'           => AlbumController::class,
+                'events'           => EventController::class,
+                // 'goodstype'        => GoodsTypeController::class,
+                'halls'            => HallController::class,
+                'labels'           => LabelController::class,
+                'musics'           => MusicController::class,
+                // 'musicalinstrument' => MusicalInstrumentController::class,
+                'performancelists' => PerformanceListController::class,
+                'proceeds'         => ProceedController::class,
+                // 'ticketlists'      => TicketListController::class,
 
             ]);
+
+            // グループルーティング終わり
+
+
+            // 部分的なリソースルート  参照先 https://readouble.com/laravel/8.x/ja/controllers.html
+            // 中間テーブルで使用
+            Route::resource('guestreservation', GuestReservationController::class)->only([
+                'index',  'create', 'store', 'update', 'edit',
+
+            ]);
+            Route::resource('entries', EntryController::class)->only([
+                'index',  'create', 'store', 'update',
+            ]);
+
+
+            // マスタ系のリソース
+            Route::resource('bandgoods', BandGoodsController::class)->except([
+                'show',
+            ]);
+            Route::resource('goodstype', GoodsTypeController::class)->except([
+                'show',
+            ]);
+            Route::resource('ticketlists', TicketListController::class)->except([
+                'show',
+            ]);
+            Route::resource('musicalinstrument', MusicalInstrumentController::class)->except([
+                'show',
+            ]);
         });
-
-        // グループルーティング終わり
-
-
     });
 });

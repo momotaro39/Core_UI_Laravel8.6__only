@@ -50,11 +50,11 @@ class EventController extends Controller
     */
     /**
      * Display a listing of the resource.
-     *
+     * 検索機能をつけるなら「Request $request」は必要
      * @return \Illuminate\Http\Response
      */
 
-    public function index()
+    public function index(Request $request = null)
     {
 
         /***************************
@@ -109,6 +109,50 @@ class EventController extends Controller
 
         /***************************
          * 追加機能として利用
+         * 検索機能用の変数を作成する
+         * 参照先 https://laraweb.net/tutorial/607/
+         *****************************/
+
+        //キーワード受け取り
+        // ビュー画面に{keyword}を追加する
+        // この情報を利用してデータベースの情報と一致させる
+        // $keyword = \Input::get('keyword');//古い書き方です
+        // $keyword = $request->input('keyword');
+
+        if (isset($request)) {
+            $keywordName = $request->input('name');
+        }
+
+
+        //クエリ生成（データベースから検索用の変数をつくります）
+        // 全検索になっている状態を作る。
+        $querySearch = Event::query();
+
+        /***************************
+         * キーワードがあったら
+         * whereはカラム内のものを特定して選択する。
+         * 今回の場合emailとnameの部分一致で検索
+         * どちらかを選択する場合は「orWhere」を利用する
+         *****************************/
+
+        //  キーワードがビュー画面より渡ってきた場合発動
+        // keywordが送られてきているかどうかを判断し、
+        // 送られていなければ、通常の処理（全検索）を行います。
+        // 全検索から情報を選別していく
+        if (!empty($keywordName)) {
+            // $querySearch->where('email','like','%'.$keyword.'%')->orWhere('name','like','%'.$keyword.'%');
+            $querySearch->Where('name', 'like', '%' . $keywordName . '%');
+        }
+
+        //ページネーション
+        // キーワードの情報を整理して表示数を変更する。情報の順番変更・表示数調整
+        $querySearchResults = $querySearch->orderBy('id', 'desc')->paginate($paginateNum);
+
+
+
+
+        /***************************
+         * 追加機能として利用
          * return view('MemberManagement.members.index', compact('bandMembers', 'AdminRoles'));
          * まとめてセットするほうが整理しやすいのでい以下のように記述
          * 変数の順番にセットして見やすくすること
@@ -118,9 +162,23 @@ class EventController extends Controller
             // 認証情報
             'user',
             'events',
+            // 'event',
+            // ページネーション用
             'eventPages',
+            // 検索した結果を返す
+            'querySearchResults',
 
         );
+        dd($requestData);
+
+        /***************************
+         * With関数
+         * （渡すときのデータ名,変数）
+         * requestdata変数に入れるので今回は使用しない
+         *****************************/
+        // return view('users.index')->with('users',$users)
+        //                           ->with('keyword',$keyword);
+
 
         return view('MemberManagement.events.index', $requestData);
     }
@@ -248,16 +306,18 @@ class EventController extends Controller
         //  バリデーションをかけない場合はこの方法で対応
         // $bandMember = BandMembers::create();
 
-        $event = Event::create();
+        // $event = Event::create($request->all());
 
+        // $event = Event::create();
+        $event =  Event::create($request->all());
 
         /***************************
          * オブジェクトにビューからもらったFormのリクエストデータを入れる
          * 左がオブジェクトの配列
          * 右がリクエストの配列
          *****************************/
-        // $event->name = $request->name;
-        // $event->email = $request->email;
+        $event->name = $request->name;
+        $event->hall_id = $request->hall_id;
 
 
 
@@ -267,7 +327,7 @@ class EventController extends Controller
          * オブジェクトの配列をsaveメソッドで保存する
          *****************************/
 
-        $event->fill()->save();
+        $event->save();
 
 
         /***************************
@@ -281,6 +341,16 @@ class EventController extends Controller
         $paginateNum     = Event::paginate(config('const.paginate.other')); //ページ設定
 
 
+        /***************************
+         *
+         *  データベースから必要な情報を取得
+         *  一覧の全表示のために必要
+         *
+         *****************************/
+
+        $events = Event::get();
+
+
 
         /***************************
          * 追加機能として利用
@@ -290,6 +360,7 @@ class EventController extends Controller
          *****************************/
 
         $requestData = compact(
+            'events',
             'event',
         );
 
@@ -349,7 +420,7 @@ class EventController extends Controller
         /***************************
          * 検索結果をビューに渡す
          *****************************/
-
+        // dd($requestData);
         return view('MemberManagement.events.show', $requestData);
     }
 
@@ -453,7 +524,6 @@ class EventController extends Controller
 
         // $event->name = $request->name;
 
-        dd($inputs);
         /***************************
          * 保存
          * オブジェクトの配列をsaveメソッドで保存する
@@ -461,6 +531,12 @@ class EventController extends Controller
 
         $event->fill($inputs)->save();
 
+
+        /***************************
+         * 保存方式2つめ
+         * オブジェクトの配列をupdateメソッドで保存する
+         *****************************/
+        // Event::where('id', $id)->update($request->all());
         /***************************
          * セーブしたら最初のページに返してあげる
          * redirect()メソッドを利用する
@@ -499,11 +575,16 @@ class EventController extends Controller
          *****************************/
         $event = Event::find($id);
         /***************************
-         * 削除
+         * 削除方式1
          *
          *****************************/
         $event->delete();
 
+        /***************************
+         * 削除方式2
+         *合体版
+         *****************************/
+        Event::where('id', $id)->delete();
         /***************************
          * セーブしたら最初のページに返してあげる
          * redirect()メソッドを利用する
