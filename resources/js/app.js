@@ -8,6 +8,22 @@ require("./bootstrap");
 
 window.Vue = require("vue");
 
+require("@fortawesome/fontawesome-free/js/all.js");
+require("bootstrap-table/dist/bootstrap-table.min.css");
+require("bootstrap-table/dist/bootstrap-table.js");
+
+require("tableexport.jquery.plugin");
+require("bootstrap-table/dist/extensions/export/bootstrap-table-export.min.js");
+require("bootstrap-table/dist/extensions/print/bootstrap-table-print.min.js");
+
+require("bootstrap-table/dist/extensions/filter-control/bootstrap-table-filter-control.min.css");
+require("bootstrap-table/dist/extensions/filter-control/bootstrap-table-filter-control.min.js");
+
+Vue.component(
+    "bootstrap-table-component",
+    require("./components/BootstrapTableComponent.vue").default
+);
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
