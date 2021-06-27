@@ -17,6 +17,7 @@ class CreateGuestReservationsTable extends Migration
             $table->id();
             $table->unsignedInteger('event_id')->comment('イベントに紐付け');
             $table->unsignedInteger('user_id')->comment('ユーザーに紐付け');
+            $table->unsignedInteger('ticket_id')->comment('チケットに紐付け');
             $table->bigInteger('create_user_id')->nullable()->comment('作成者');
             $table->timestamp('created_at')->comment('作成日');
             $table->bigInteger('update_user_id')->nullable()->comment('更新者');

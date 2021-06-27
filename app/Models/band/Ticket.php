@@ -475,4 +475,20 @@ class Ticket extends Model
     | $sectionList = MSection::getSectionList();  //見本
     |
     */
+
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | その他
+    |--------------------------------------------------------------------------
+    |
+    |
+    */
+
+    public static function getSumPartProceed()
+    {
+        $sumProceed = $this->rank;
+        return $sumProceed;
+    }
 }
