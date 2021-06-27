@@ -31,6 +31,15 @@ Vue.component(
     "example-api-component",
     require("./components/ExampleApiComponent.vue").default
 );
+// Vue.component(
+//     "git-hub-api-component",
+//     require("./components/GitHubApiComponent.vue").default
+// );
+
+Vue.component(
+    "dog-component",
+    require("./components/DogApiComponent.vue").default
+);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

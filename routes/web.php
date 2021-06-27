@@ -34,6 +34,8 @@ use \Band\Admin\ProceedController;
 use \Band\Admin\TicketListController;
 
 
+use \App\Http\Controllers\ApiSet\GitHubApiController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -51,13 +53,32 @@ Route::get('/tasks', function () {
 });
 
 
+
+
 // CoreUI用ルーティング
 Route::group(['middleware' => ['get.menu']], function () {
     Route::get('/', function () {
         return view('dashboard.homepage');
     });
-    //追加機能用ルーティング サイドバーにも表示するために利用
+
+
+
+    /*
+|--------------------------------------------------------------------------
+| 追加機能用ルーティング
+|--------------------------------------------------------------------------
+|
+| サイドバーにも表示するために利用
+| Axio編
+|
+*/
+
+    // Api ランダムユーザー表示
     Route::get('/function/randomuser', 'RandomuserController@index');
+
+
+    //Api GitHubapi表示に使用
+    Route::get('/function/github', [\App\Http\Controllers\ApiSet\GitHubApiController::class, 'index']);
 
     //Axios導入テスト フォルダとファイル名でビューファイルを指定
     Route::get('/function/users', function () {
@@ -75,6 +96,17 @@ Route::group(['middleware' => ['get.menu']], function () {
 
     // Laravel_Excel追加
     // Route::get('excelusers', [ExcelUsersController::class, 'export']);
+
+    /*
+|--------------------------------------------------------------------------
+| 追加機能用ルーティング
+|--------------------------------------------------------------------------
+|
+| サイドバーにも表示するために利用
+| user権限のみ
+|
+*/
+
 
     //user権限のみ
     Route::group(['middleware' => ['role:user']], function () {

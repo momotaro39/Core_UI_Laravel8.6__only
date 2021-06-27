@@ -12,8 +12,9 @@
                     </div>
                     <div class="card-body">
                         <div id="app">
-                            <randomuser-component></randomuser-component>
-                            <dog-component></dog-component>
+                            <!-- ここにコンポーネントを追加する -->
+                            <randomuser-git-hub-api-component>
+                                </git-hub-api-component-component>
                         </div>
 
                     </div>

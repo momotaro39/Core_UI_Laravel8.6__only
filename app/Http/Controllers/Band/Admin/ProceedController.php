@@ -61,31 +61,9 @@ class ProceedController extends Controller
          *
          *
          *****************************/
-        $adminRoles = AdminRole::get(); // 管理役割一覧を取得
-        $userRoles = UserRole::get(); // 利用役割一覧を取得
 
         $proceeds = Proceed::get();
 
-
-        /***************************
-         *
-         * 検索するための情報は２つ用意する
-         * リクエストデータの取得
-         *
-         *****************************/
-
-        $conditions      = $request->all();
-        $originalRequest = $request;
-
-        /***************************
-         *
-         *  順番を入れ替えるために必要
-         *  順番のカラム設定・順番の昇降順
-         *
-         *****************************/
-
-        $orderby         = $request->input('orderby') ?: 'created_at';
-        $sort            = $request->input('sort') ?: 'desc';
 
 
         /***************************
@@ -99,23 +77,6 @@ class ProceedController extends Controller
         // $sectionList    = MSection::getSectionList(); //セクション名
 
 
-        /***************************
-         * データベースとフォームの情報を一致するものを取得
-         *  モデル名::searchByConditions($conditions);
-         *
-         * $queriesはデータベースから取得した情報の総称
-         * これがデータベースからの取得の始まり
-         * 以降が加工のための変数を追加
-         *****************************/
-
-        $queries =  Proceed::searchByConditions($conditions); //検索
-
-        /***************************
-         * 追加機能として利用
-         * データベースと一致した数を取得して、数を計上する。
-         *
-         *****************************/
-        $listCount       = $queries->count(); //件数取得
 
         /***************************
          * 追加機能として利用
@@ -130,14 +91,6 @@ class ProceedController extends Controller
          * コンフィグファイルでページ数を設定しておく
          *****************************/
         $paginateNum     = config('const.paginate.other'); //ページ設定
-
-        /***************************
-         * 追加機能として利用
-         * 1 ソート機能を追加
-         * 2 ソートした内容をページネーションの数値で設定した表示数に区切る
-         *****************************/
-
-        $queriesList = $this->setOrderBy($queries, $orderby, $sort);
 
 
         // $queriesList = $queriesList->paginate($paginateNum); //ページネーション用
@@ -156,10 +109,7 @@ class ProceedController extends Controller
             'proceeds',
             // 表示リスト
             // 'sectionList',
-            // リクエスト情報
-            'conditions',
-            // 加工情報
-            'queriesList',
+
         );
 
         return view('MemberManagement.Proceeds.index', $requestData);
@@ -241,7 +191,7 @@ class ProceedController extends Controller
         //
     }
 
-   /*
+    /*
     |--------------------------------------------------------------------------
     | 更新画面を表示
     |--------------------------------------------------------------------------
@@ -346,6 +296,4 @@ class ProceedController extends Controller
         }
         return $query;
     }
-
-
 }
