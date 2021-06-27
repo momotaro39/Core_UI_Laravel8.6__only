@@ -2,6 +2,11 @@
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Route;
+
+use App\Models\Band\BandMembers;
+
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,3 +23,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 */
+
+
+// ここでコンポーネントに情報を渡す 参照先はこちら https://syachiku.net/vue-bootstrap4-table-laravel/
+Route::get('/members', function () {
+    $bandMembers = BandMembers::all()->count();
+    return BandMembers::paginate($bandMembers);
+});

@@ -48,16 +48,24 @@ export default {
                     sort: true
                 },
                 {
-                    label: "氏名",
-                    name: "name",
+                    label: "バンドID",
+                    name: "band_id",
                     sort: true,
                     filter: {
                         type: "simple"
                     }
                 },
                 {
-                    label: "年齢",
-                    name: "year",
+                    label: "ユーザー",
+                    name: "user_id",
+                    sort: true,
+                    filter: {
+                        type: "simple"
+                    }
+                },
+                {
+                    label: "住所",
+                    name: "address",
                     sort: true,
                     filter: {
                         type: "simple"
@@ -71,18 +79,6 @@ export default {
                         type: "simple"
                     }
                 },
-                {
-                    label: "所属",
-                    name: "dept",
-                    sort: true,
-                    filter: {
-                        type: "simple"
-                    }
-                },
-                {
-                    label: "入社日",
-                    name: "start_day"
-                }
             ],
             actions: [],
 
@@ -137,7 +133,7 @@ export default {
         fetchData() {
             let self = this;
             axios
-                .get("http://localhost/api/members", {
+                .get("http://localhost:8000/api/members", {
                     params: {
                         queryParams: this.queryParams
                     }

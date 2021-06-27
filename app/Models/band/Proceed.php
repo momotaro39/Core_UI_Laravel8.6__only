@@ -165,7 +165,7 @@ class Proceed extends Model
 
     public function ticket()
     {
-        return $this->belongsTo(Tickets::class);
+        return $this->belongsTo(Ticket::class);
     }
 
 

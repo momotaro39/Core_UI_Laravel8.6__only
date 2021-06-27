@@ -122,7 +122,6 @@
 
 
     <div id="app">
-
         <bootstrap-table-component models='@json($models)' />
     </div>
 

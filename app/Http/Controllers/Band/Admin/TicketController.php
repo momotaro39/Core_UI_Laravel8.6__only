@@ -21,12 +21,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 
-use App\Models\Band\Tickets;
+use App\Models\Band\Ticket;
 use App\Models\Band\AdminRole;
 use App\Models\Band\UserRole;
 use Illuminate\Http\Request;
 
-class TicketsController extends Controller
+class TicketController extends Controller
 {
 
     /*
@@ -65,7 +65,7 @@ class TicketsController extends Controller
         $adminRoles = AdminRole::get(); // 管理役割一覧を取得
         $userRoles = UserRole::get(); // 利用役割一覧を取得
 
-        $Ticketss = Tickets::get();
+        $tickets = Ticket::get();
 
 
         /***************************
@@ -109,7 +109,7 @@ class TicketsController extends Controller
          * 以降が加工のための変数を追加
          *****************************/
 
-        $queries =  Tickets::searchByConditions($conditions); //検索
+        $queries =  Ticket::searchByConditions($conditions); //検索
 
         /***************************
          * 追加機能として利用

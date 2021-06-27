@@ -23,28 +23,32 @@
                     <label class="col-sm-5 col-form-label" for="input-normal" style="user-select: auto;">
                         バンド名</label>
                     <div class="col-sm-6" style="user-select: auto;">
-                        <input class="form-control" id="input-normal" type="text" name="input-normal" placeholder="Normal" style="user-select: auto;">
+                        <input class="form-control" id="input-normal" type="text" name="input-normal"
+                            placeholder="Normal" style="user-select: auto;">
                     </div>
                 </div>
                 <div class="form-group row" style="user-select: auto;">
                     <label class="col-sm-5 col-form-label" for="input-normal" style="user-select: auto;">
                         名前</label>
                     <div class="col-sm-6" style="user-select: auto;">
-                        <input class="form-control" id="input-normal" type="text" name="input-normal" placeholder="Normal" style="user-select: auto;">
+                        <input class="form-control" id="input-normal" type="text" name="input-normal"
+                            placeholder="Normal" style="user-select: auto;">
                     </div>
                 </div>
                 <div class="form-group row" style="user-select: auto;">
                     <label class="col-sm-5 col-form-label" for="input-normal" style="user-select: auto;">
                         楽器</label>
                     <div class="col-sm-6" style="user-select: auto;">
-                        <input class="form-control" id="input-normal" type="text" name="input-normal" placeholder="Normal" style="user-select: auto;">
+                        <input class="form-control" id="input-normal" type="text" name="input-normal"
+                            placeholder="Normal" style="user-select: auto;">
                     </div>
                 </div>
                 <div class="form-group row" style="user-select: auto;">
                     <label class="col-sm-5 col-form-label" for="input-normal" style="user-select: auto;">
                         メンバータイプ</label>
                     <div class="col-sm-6" style="user-select: auto;">
-                        <input class="form-control" id="input-normal" type="text" name="input-normal" placeholder="Normal" style="user-select: auto;">
+                        <input class="form-control" id="input-normal" type="text" name="input-normal"
+                            placeholder="Normal" style="user-select: auto;">
                     </div>
                 </div>
 
@@ -62,9 +66,11 @@
     <div class="row">
         <div class="col-lg-12" style="user-select: auto;">
             <div class="card" style="user-select: auto;">
-                <div class="card-header" style="user-select: auto;"><i class="fa fa-align-justify" style="user-select: auto;"></i> メンバー マスタ</div>
+                <div class="card-header" style="user-select: auto;"><i class="fa fa-align-justify"
+                        style="user-select: auto;"></i> メンバー マスタ</div>
                 <div class="card-body" style="user-select: auto;">
-                    <table class="table table-responsive-sm table-bordered table-striped table-sm" style="user-select: auto;">
+                    <table class="table table-responsive-sm table-bordered table-striped table-sm"
+                        style="user-select: auto;">
                         <thead style="user-select: auto;">
                             <tr style="user-select: auto;">
                                 <th style="user-select: auto;">氏名</th>
@@ -106,20 +112,25 @@
                     {{-- ページネーション --}}
                     <nav style="user-select: auto;">
                         <ul class="pagination" style="user-select: auto;">
-                            <li class="page-item" style="user-select: auto;"><a class="page-link" href="{{ $bandMembers->url(0) }}" style="user-select: auto;">Top</a></li>
+                            <li class="page-item" style="user-select: auto;"><a class="page-link"
+                                    href="{{ $bandMembers->url(0) }}" style="user-select: auto;">Top</a></li>
 
                             @if ($bandMembers->previousPageUrl())
-                            <li class="page-item" style="user-select: auto;"><a class="page-link" href="{{ $bandMembers->previousPageUrl() }}" style="user-select: auto;">Prev</a>
+                            <li class="page-item" style="user-select: auto;"><a class="page-link"
+                                    href="{{ $bandMembers->previousPageUrl() }}" style="user-select: auto;">Prev</a>
                             </li>
                             @endif
 
 
                             @if ($bandMembers->nextPageUrl())
-                            <li class="page-item" style="user-select: auto;"><a class="page-link" href="{{ $bandMembers->nextPageUrl() }}" style="user-select: auto;">Next</a>
+                            <li class="page-item" style="user-select: auto;"><a class="page-link"
+                                    href="{{ $bandMembers->nextPageUrl() }}" style="user-select: auto;">Next</a>
                             </li>
                             @endif
 
-                            <li class="page-item" style="user-select: auto;"><a class="page-link" href="{{ $bandMembers->url($bandMembers->lastPage()) }}" style="user-select: auto;">End</a></li>
+                            <li class="page-item" style="user-select: auto;"><a class="page-link"
+                                    href="{{ $bandMembers->url($bandMembers->lastPage()) }}"
+                                    style="user-select: auto;">End</a></li>
 
                             <li class="page-item active" style="user-select: auto;">{{ $bandMembers->currentPage() }}
                                 / {{ $bandMembers->lastPage() }}</li>
@@ -159,6 +170,14 @@
     </div>
     {{-- ここまでカード1 --}}
 
+
+    <div id="app">
+        <vue-bootstrap4-table />
+
+    </div>
+    <script src="{{ mix('js/app.js') }}"></script>
+
+
 </div>
 
 
@@ -170,16 +189,16 @@
 
 @section('add-script')
 <script>
-    $(function() {
-        $(".btn-destroy").click(function() {
-            if (confirm("本当に削除しますか？")) {
-                //そのままsubmit（削除）
-            } else {
-                //cancel
-                return false;
-            }
-        });
+$(function() {
+    $(".btn-destroy").click(function() {
+        if (confirm("本当に削除しますか？")) {
+            //そのままsubmit（削除）
+        } else {
+            //cancel
+            return false;
+        }
     });
+});
 </script>
 @endsection
 @section('javascript')

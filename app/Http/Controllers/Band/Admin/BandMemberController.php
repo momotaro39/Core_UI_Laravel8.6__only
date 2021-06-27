@@ -63,37 +63,18 @@ class BandMemberController extends Controller
 
         $user = Auth::user();
 
+        // 下の書き方でも良い
+        // $user = auth()->user(); //アクセスしているユーザ情報を取得
         /***************************
          *
          *  データベースから必要な情報を取得
          *
          *
          *****************************/
-        $adminRoles = AdminRole::get(); // 管理役割一覧を取得
-        $userRoles = UserRole::get(); // 利用役割一覧を取得
 
         $bandMembers = BandMembers::get();
 
 
-        /***************************
-         *
-         * 検索するための情報は２つ用意する
-         * リクエストデータの取得
-         *
-         *****************************/
-
-        $conditions      = $request->all();
-        $originalRequest = $request;
-
-        /***************************
-         *
-         *  順番を入れ替えるために必要
-         *  順番のカラム設定・順番の昇降順
-         *
-         *****************************/
-
-        $orderby         = $request->input('orderby') ?: 'created_at';
-        $sort            = $request->input('sort') ?: 'desc';
 
 
         /***************************
@@ -108,47 +89,12 @@ class BandMemberController extends Controller
 
 
         /***************************
-         * データベースとフォームの情報を一致するものを取得
-         *  モデル名::searchByConditions($conditions);
-         *
-         * $queriesはデータベースから取得した情報の総称
-         * これがデータベースからの取得の始まり
-         * 以降が加工のための変数を追加
-         *****************************/
-
-        $queries =  BandMembers::searchByConditions($conditions); //検索
-
-        /***************************
-         * 追加機能として利用
-         * データベースと一致した数を取得して、数を計上する。
-         *
-         *****************************/
-        $listCount       = $queries->count(); //件数取得
-
-        /***************************
-         * 追加機能として利用
-         * $sum〇〇
-         * 特定のカラムの数字を合計して出力
-         *****************************/
-        // $sumCosts        = $queries->sum('performance_production_cost');
-
-        /***************************
          * 追加機能として利用
          * ページネーションの数を設定する
          * コンフィグファイルでページ数を設定しておく
          *****************************/
         $paginateNum     = config('const.paginate.other'); //ページ設定
 
-        /***************************
-         * 追加機能として利用
-         * 1 ソート機能を追加
-         * 2 ソートした内容をページネーションの数値で設定した表示数に区切る
-         *****************************/
-
-        $queriesList = $this->setOrderBy($queries, $orderby, $sort);
-
-
-        // $queriesList = $queriesList->paginate($paginateNum); //ページネーション用
 
         /***************************
          *
@@ -177,10 +123,7 @@ class BandMemberController extends Controller
             'bandMembers',
             // 表示リスト
             // 'sectionList',
-            // リクエスト情報
-            'conditions',
-            // 加工情報
-            'queriesList',
+
         );
 
         return view('MemberManagement.members.index', $requestData);
@@ -190,7 +133,7 @@ class BandMemberController extends Controller
 
     /*
     |--------------------------------------------------------------------------
-    | 新規投稿画面を表示
+    |  新規投稿画面を表示（create）
     |--------------------------------------------------------------------------
     |
     | HTTP動詞：	GET
@@ -207,6 +150,10 @@ class BandMemberController extends Controller
      */
     public function create()
     {
+        /***************************
+         * リダイレクト
+         *****************************/
+        //create.blade.phpに転送
         return view('MemberManagement.members.create');
     }
 
@@ -240,8 +187,55 @@ class BandMemberController extends Controller
         // 顧客情報をデータベースに新規登録します。
         $members = BandMembers::create($attribute);
 
-        // 顧客一覧画面に遷移します。
-        return redirect('/members');
+
+        /***************************
+         * 保存
+         * オブジェクトの配列をsaveメソッドで保存する
+         *****************************/
+
+        $members->save();
+
+
+        /***************************
+         * 追加機能として利用
+         * ページネーションの数を設定する
+         * コンフィグファイルでページ数を設定しておく。
+         *
+         * Bootstrap方式を使うpsgenate()方法も記述
+         *
+         *****************************/
+        $paginateNum     = BandMembers::paginate(config('const.paginate.other')); //ページ設定
+
+
+        /***************************
+         *
+         *  データベースから必要な情報を取得
+         *  一覧の全表示のために必要
+         *
+         *****************************/
+
+        $bandMembers = BandMembers::get();
+
+
+
+        /***************************
+         * 追加機能として利用
+         * return view('MemberManagement.members.index', compact('bandMembers', 'AdminRoles'));
+         * まとめてセットするほうが整理しやすいのでい以下のように記述
+         * 変数の順番にセットして見やすくすること
+         *****************************/
+
+        $requestData = compact(
+            'bandMembers',
+            'bandMember',
+        );
+
+
+        /***************************
+         * 一覧画面に遷移します。
+         *****************************/
+
+        return view('MemberManagement.members.index', $requestData);
     }
 
     /*
@@ -265,25 +259,54 @@ class BandMemberController extends Controller
      */
 
     // Laravelが該当する情報をデータベースから取得し bandMembers変数に入れます。
-    public function show(BandMembers $bandMembers)
+    public function show(BandMembers $bandMember, $id)
     {
 
-        if (auth()->user()->isAdministrators()) {
-            $bandMembers = BandMembers::all()->first();
-            // dd($bandMembers);
-        } else {
-            $this->authorize('view', $bandMembers);
-        }
+        /***************************
+         * レコードを検索
+         *****************************/
+
+        $bandMember = BandMembers::find($id);
 
 
+        /***************************
+         * 管理者のみ表示することができる
+         * 一旦外します
+         *****************************/
+
+        // if (auth()->user()->isAdministrators()) {
+        //     $bandMember = BandMembers::all()->first();
+        //     // dd($bandMembers);
+        // } else {
+        //     $this->authorize('view', $bandMember);
+        // }
+
+
+        /***************************
+         * 追加機能として利用
+         * return view('MemberManagement.members.index', compact('bandMembers', 'AdminRoles'));
+         * まとめてセットするほうが整理しやすいのでい以下のように記述
+         * 変数の順番にセットして見やすくすること
+         *****************************/
+
+
+        $requestData = compact(
+
+            'bandMember',
+
+        );
+
+        /***************************
+         * 検索結果をビューに渡す
+         *****************************/
         // // Policy.phpのview関数を呼んで管理者でなければ ユーザーの所属するバンドメンバーしか見られないように制御します。
         // $this->authorize('view', $bandMembers);
 
-        return view('MemberManagement.members.show', compact('bandMembers'));
+        return view('MemberManagement.members.show', $requestData);
     }
 
 
-   /*
+    /*
     |--------------------------------------------------------------------------
     | 更新画面を表示
     |--------------------------------------------------------------------------
@@ -301,10 +324,36 @@ class BandMemberController extends Controller
      * @param  \App\Models\BandMembers  $bandMembers
      * @return \Illuminate\Http\Response
      */
-    public function edit(BandMembers $bandMembers)
+    public function edit($id)
     {
-        //
+        /***************************
+         * レコードを検索
+         *****************************/
+
+        $bandMember = BandMembers::find($id);
+
+        /***************************
+         * 追加機能として利用
+         * return view('MemberManagement.members.index', compact('bandMembers', 'AdminRoles'));
+         * まとめてセットするほうが整理しやすいのでい以下のように記述
+         * 変数の順番にセットして見やすくすること
+         *****************************/
+
+
+        $requestData = compact(
+            'bandMember',
+
+        );
+
+
+        /***************************
+         * idを取得して、DBから検索して検索結果をビューに渡す
+         * 個別の情報が表示される
+         *****************************/
+
+        return view('MemberManagement.members.edit', $requestData);
     }
+
 
     /*
     |--------------------------------------------------------------------------
@@ -327,11 +376,54 @@ class BandMemberController extends Controller
      * @param  \App\Models\BandMembers  $bandMembers
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, BandMembers $bandMembers)
+    public function update(Request $request, $id)
     {
-        //
-    }
 
+        /***************************
+         * レコードを検索
+         *****************************/
+
+        $bandMember = BandMembers::find($id);
+
+        /***************************
+         * 変更した情報を一気に上書きするために
+         * リクエスト情報を全て取得する
+         *****************************/
+
+        // バリデーションをかけた情報をセット
+        $inputs = $request->all();
+        /***************************
+         * 値を代入
+         * find()したデータにリクエストの情報を入力
+         * 個別に入れたい場合あはリクエストとレコード情報を一致させて
+         * 上書きするものを決める。
+         *
+         * 面倒なので、まとめて上書きの方法で決定します。
+         *****************************/
+
+        // $event->name = $request->name;
+
+        /***************************
+         * 保存
+         * オブジェクトの配列をsaveメソッドで保存する
+         *****************************/
+
+        $bandMember->fill($inputs)->save();
+
+
+        /***************************
+         * 保存方式2つめ
+         * オブジェクトの配列をupdateメソッドで保存する
+         *****************************/
+        // Event::where('id', $id)->update($request->all());
+        /***************************
+         * セーブしたら最初のページに返してあげる
+         * redirect()メソッドを利用する
+         *****************************/
+
+        //リダイレクト
+        return redirect()->to('/core/members');
+    }
     /*
     |--------------------------------------------------------------------------
     | 削除処理
@@ -350,8 +442,29 @@ class BandMemberController extends Controller
      * @param  \App\Models\BandMembers  $bandMembers
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BandMembers $bandMembers)
+    public function destroy(BandMembers $bandMembers, $id)
     {
-        //
+        /***************************
+         * 削除対象レコードを検索
+         *****************************/
+        $bandMember = BandMembers::find($id);
+        /***************************
+         * 削除方式1
+         *
+         *****************************/
+        $bandMember->delete();
+
+        /***************************
+         * 削除方式2
+         *合体版
+         *****************************/
+        BandMembers::where('id', $id)->delete();
+        /***************************
+         * セーブしたら最初のページに返してあげる
+         * redirect()メソッドを利用する
+         *****************************/
+
+        //リダイレクト
+        return redirect()->to('/core/members');
     }
 }

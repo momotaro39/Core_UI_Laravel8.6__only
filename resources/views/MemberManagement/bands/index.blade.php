@@ -16,35 +16,40 @@
                     <label class="col-sm-5 col-form-label" for="input-normal" style="user-select: auto;">
                         バンド名</label>
                     <div class="col-sm-6" style="user-select: auto;">
-                        <input class="form-control" id="input-normal" type="text" name="input-normal" placeholder="Normal" style="user-select: auto;">
+                        <input class="form-control" id="input-normal" type="text" name="input-normal"
+                            placeholder="Normal" style="user-select: auto;">
                     </div>
                 </div>
                 <div class="form-group row" style="user-select: auto;">
                     <label class="col-sm-5 col-form-label" for="input-normal" style="user-select: auto;">
                         レーベル</label>
                     <div class="col-sm-6" style="user-select: auto;">
-                        <input class="form-control" id="input-normal" type="text" name="input-normal" placeholder="Normal" style="user-select: auto;">
+                        <input class="form-control" id="input-normal" type="text" name="input-normal"
+                            placeholder="Normal" style="user-select: auto;">
                     </div>
                 </div>
                 <div class="form-group row" style="user-select: auto;">
                     <label class="col-sm-5 col-form-label" for="input-normal" style="user-select: auto;">
                         検索項目4</label>
                     <div class="col-sm-6" style="user-select: auto;">
-                        <input class="form-control" id="input-normal" type="text" name="input-normal" placeholder="Normal" style="user-select: auto;">
+                        <input class="form-control" id="input-normal" type="text" name="input-normal"
+                            placeholder="Normal" style="user-select: auto;">
                     </div>
                 </div>
                 <div class="form-group row" style="user-select: auto;">
                     <label class="col-sm-5 col-form-label" for="input-normal" style="user-select: auto;">
                         検索項目5</label>
                     <div class="col-sm-6" style="user-select: auto;">
-                        <input class="form-control" id="input-normal" type="text" name="input-normal" placeholder="Normal" style="user-select: auto;">
+                        <input class="form-control" id="input-normal" type="text" name="input-normal"
+                            placeholder="Normal" style="user-select: auto;">
                     </div>
                 </div>
                 <div class="form-group row" style="user-select: auto;">
                     <label class="col-sm-5 col-form-label" for="input-normal" style="user-select: auto;">
                         検索項目6</label>
                     <div class="col-sm-6" style="user-select: auto;">
-                        <input class="form-control" id="input-normal" type="text" name="input-normal" placeholder="Normal" style="user-select: auto;">
+                        <input class="form-control" id="input-normal" type="text" name="input-normal"
+                            placeholder="Normal" style="user-select: auto;">
                     </div>
                 </div>
 
@@ -62,9 +67,11 @@
     <div class="row">
         <div class="col-lg-12" style="user-select: auto;">
             <div class="card" style="user-select: auto;">
-                <div class="card-header" style="user-select: auto;"><i class="fa fa-align-justify" style="user-select: auto;"></i> バンド一覧</div>
+                <div class="card-header" style="user-select: auto;"><i class="fa fa-align-justify"
+                        style="user-select: auto;"></i> バンド一覧</div>
                 <div class="card-body" style="user-select: auto;">
-                    <table class="table table-responsive-sm table-bordered table-striped table-sm" style="user-select: auto;">
+                    <table class="table table-responsive-sm table-bordered table-striped table-sm"
+                        style="user-select: auto;">
                         <thead style="user-select: auto;">
                             <tr style="user-select: auto;">
                                 <th style="user-select: auto;">バンド名</th>
@@ -83,11 +90,14 @@
                             <tr style="user-select: auto;">
                                 <td style="user-select: auto;">テキスト1</td>
                                 <td style="user-select: auto;">テキスト2</td>
-                                <td style="user-select: auto;"><span class="badge badge-danger" style="user-select: auto;">Banned</span>
+                                <td style="user-select: auto;"><span class="badge badge-danger"
+                                        style="user-select: auto;">Banned</span>
                                 </td>
-                                <td style="user-select: auto;"><span class="badge badge-danger" style="user-select: auto;">Banned</span>
+                                <td style="user-select: auto;"><span class="badge badge-danger"
+                                        style="user-select: auto;">Banned</span>
                                 </td>
-                                <td style="user-select: auto;"><span class="badge badge-danger" style="user-select: auto;">Banned</span>
+                                <td style="user-select: auto;"><span class="badge badge-danger"
+                                        style="user-select: auto;">Banned</span>
                                 </td>
                                 @endforeach
                             </tr>
@@ -114,9 +124,11 @@
     <div class="row">
         <div class="col-lg-12" style="user-select: auto;">
             <div class="card" style="user-select: auto;">
-                <div class="card-header" style="user-select: auto;"><i class="fa fa-align-justify" style="user-select: auto;"></i> バンドメンバー詳細</div>
+                <div class="card-header" style="user-select: auto;"><i class="fa fa-align-justify"
+                        style="user-select: auto;"></i> バンドメンバー詳細</div>
                 <div class="card-body" style="user-select: auto;">
-                    <table class="table table-responsive-sm table-bordered table-striped table-sm" style="user-select: auto;">
+                    <table class="table table-responsive-sm table-bordered table-striped table-sm"
+                        style="user-select: auto;">
                         <thead style="user-select: auto;">
                             <tr style="user-select: auto;">
                                 <th style="user-select: auto;">メンバー名</th>
@@ -138,9 +150,11 @@
                                 <td style="user-select: auto;">テキスト3</td>
                                 <td style="user-select: auto;">テキスト4</td>
 
-                                <td style="user-select: auto;"><span class="badge badge-danger" style="user-select: auto;">Banned</span>
+                                <td style="user-select: auto;"><span class="badge badge-danger"
+                                        style="user-select: auto;">Banned</span>
                                 </td>
-                                <td style="user-select: auto;"><span class="badge badge-danger" style="user-select: auto;">Banned</span>
+                                <td style="user-select: auto;"><span class="badge badge-danger"
+                                        style="user-select: auto;">Banned</span>
                                 </td>
                                 @endforeach
                             </tr>
@@ -150,12 +164,18 @@
                     {{-- ページネーション --}}
                     <nav style="user-select: auto;">
                         <ul class="pagination" style="user-select: auto;">
-                            <li class="page-item" style="user-select: auto;"><a class="page-link" href="#" style="user-select: auto;">Prev</a></li>
-                            <li class="page-item active" style="user-select: auto;"><a class="page-link" href="#" style="user-select: auto;">1</a></li>
-                            <li class="page-item" style="user-select: auto;"><a class="page-link" href="#" style="user-select: auto;">2</a></li>
-                            <li class="page-item" style="user-select: auto;"><a class="page-link" href="#" style="user-select: auto;">3</a></li>
-                            <li class="page-item" style="user-select: auto;"><a class="page-link" href="#" style="user-select: auto;">4</a></li>
-                            <li class="page-item" style="user-select: auto;"><a class="page-link" href="#" style="user-select: auto;">Next</a></li>
+                            <li class="page-item" style="user-select: auto;"><a class="page-link" href="#"
+                                    style="user-select: auto;">Prev</a></li>
+                            <li class="page-item active" style="user-select: auto;"><a class="page-link" href="#"
+                                    style="user-select: auto;">1</a></li>
+                            <li class="page-item" style="user-select: auto;"><a class="page-link" href="#"
+                                    style="user-select: auto;">2</a></li>
+                            <li class="page-item" style="user-select: auto;"><a class="page-link" href="#"
+                                    style="user-select: auto;">3</a></li>
+                            <li class="page-item" style="user-select: auto;"><a class="page-link" href="#"
+                                    style="user-select: auto;">4</a></li>
+                            <li class="page-item" style="user-select: auto;"><a class="page-link" href="#"
+                                    style="user-select: auto;">Next</a></li>
                         </ul>
                     </nav>
                     {{-- ページネーションここまで --}}
@@ -164,8 +184,6 @@
         </div>
     </div>
     {{-- ここまでカード1 --}}
-
-
 
 </div>
 

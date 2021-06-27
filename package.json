@@ -84,6 +84,7 @@
         "laravel-mix": "^5",
         "perfect-scrollbar": "1.5.0",
         "tableexport.jquery.plugin": "^1.10.26",
+        "vue-bootstrap4-table": "^1.1.11",
         "vue-router": "^3.5.1"
     },
     "devDependencies": {

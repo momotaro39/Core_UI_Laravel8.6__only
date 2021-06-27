@@ -57,6 +57,11 @@ Vue.component(
     require("./components/BootstrapTableComponent.vue").default
 );
 
+Vue.component(
+    "vue-bootstrap4-table",
+    require("./components/VueBootstrap4Table.vue").default
+);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
