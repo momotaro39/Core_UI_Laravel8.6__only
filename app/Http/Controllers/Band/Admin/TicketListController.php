@@ -21,12 +21,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 
-use App\Models\Band\TicketList;
+use App\Models\Band\Tickets;
 use App\Models\Band\AdminRole;
 use App\Models\Band\UserRole;
 use Illuminate\Http\Request;
 
-class TicketListController extends Controller
+class TicketsController extends Controller
 {
 
     /*
@@ -65,7 +65,7 @@ class TicketListController extends Controller
         $adminRoles = AdminRole::get(); // 管理役割一覧を取得
         $userRoles = UserRole::get(); // 利用役割一覧を取得
 
-        $ticketLists = TicketList::get();
+        $Ticketss = Tickets::get();
 
 
         /***************************
@@ -109,7 +109,7 @@ class TicketListController extends Controller
          * 以降が加工のための変数を追加
          *****************************/
 
-        $queries =  TicketList::searchByConditions($conditions); //検索
+        $queries =  Tickets::searchByConditions($conditions); //検索
 
         /***************************
          * 追加機能として利用
@@ -154,7 +154,7 @@ class TicketListController extends Controller
         $requestData = compact(
             // 認証情報
             'user',
-            'ticketLists',
+            'Ticketss',
             // 表示リスト
             // 'sectionList',
             // リクエスト情報
@@ -163,7 +163,7 @@ class TicketListController extends Controller
             'queriesList',
         );
 
-        return view('MemberManagement.ticketLists.index', $requestData);
+        return view('MemberManagement.Ticketss.index', $requestData);
     }
 
 
@@ -234,15 +234,15 @@ class TicketListController extends Controller
      * Display the specified resource.
      * 指定したリソースを表示します。
      *
-     * @param  \App\Models\TicketList  $ticketList
+     * @param  \App\Models\Tickets  $Tickets
      * @return \Illuminate\Http\Response
      */
-    public function show(TicketList $ticketList)
+    public function show(Tickets $Tickets)
     {
         //
     }
 
-   /*
+    /*
     |--------------------------------------------------------------------------
     | 更新画面を表示
     |--------------------------------------------------------------------------
@@ -257,10 +257,10 @@ class TicketListController extends Controller
     /**
      * Show the form for editing the specified resource.
      * 指定したリソースを編集するためのフォームを表示します。
-     * @param  \App\Models\TicketList  $ticketList
+     * @param  \App\Models\Tickets  $Tickets
      * @return \Illuminate\Http\Response
      */
-    public function edit(TicketList $ticketList)
+    public function edit(Tickets $Tickets)
     {
         //
     }
@@ -283,10 +283,10 @@ class TicketListController extends Controller
      * ストレージ内の指定されたリソースを更新します。
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\TicketList  $ticketList
+     * @param  \App\Models\Tickets  $Tickets
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TicketList $ticketList)
+    public function update(Request $request, Tickets $Tickets)
     {
         //
     }
@@ -306,10 +306,10 @@ class TicketListController extends Controller
     /**
      * Remove the specified resource from storage.
      * 指定されたリソースをストレージから削除します。
-     * @param  \App\Models\TicketList  $ticketList
+     * @param  \App\Models\Tickets  $Tickets
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TicketList $ticketList)
+    public function destroy(Tickets $Tickets)
     {
         //
     }
@@ -346,6 +346,4 @@ class TicketListController extends Controller
         }
         return $query;
     }
-
-
 }

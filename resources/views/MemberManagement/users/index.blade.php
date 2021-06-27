@@ -1,8 +1,7 @@
 @extends('dashboard.base')
 {{-- ページのタイトルを挿入 --}}
 @section('title', 'メンバー一覧ページ')
-{{-- メインコンテンツの内容を入れていきます --}}
-@section('content')
+{{-- メインコンテンツの内容を入れていきます --}}@section('content')
 
 
 
@@ -17,35 +16,40 @@
                     <label class="col-sm-5 col-form-label" for="input-normal" style="user-select: auto;">
                         名前</label>
                     <div class="col-sm-6" style="user-select: auto;">
-                        <input class="form-control" id="input-normal" type="text" name="input-normal" placeholder="Normal" style="user-select: auto;">
+                        <input class="form-control" id="input-normal" type="text" name="input-normal"
+                            placeholder="Normal" style="user-select: auto;">
                     </div>
                 </div>
                 <div class="form-group row" style="user-select: auto;">
                     <label class="col-sm-5 col-form-label" for="input-normal" style="user-select: auto;">
                         バンド名</label>
                     <div class="col-sm-6" style="user-select: auto;">
-                        <input class="form-control" id="input-normal" type="text" name="input-normal" placeholder="Normal" style="user-select: auto;">
+                        <input class="form-control" id="input-normal" type="text" name="input-normal"
+                            placeholder="Normal" style="user-select: auto;">
                     </div>
                 </div>
                 <div class="form-group row" style="user-select: auto;">
                     <label class="col-sm-5 col-form-label" for="input-normal" style="user-select: auto;">
                         メールアドレス</label>
                     <div class="col-sm-6" style="user-select: auto;">
-                        <input class="form-control" id="input-normal" type="text" name="input-normal" placeholder="Normal" style="user-select: auto;">
+                        <input class="form-control" id="input-normal" type="text" name="input-normal"
+                            placeholder="Normal" style="user-select: auto;">
                     </div>
                 </div>
                 <div class="form-group row" style="user-select: auto;">
                     <label class="col-sm-5 col-form-label" for="input-normal" style="user-select: auto;">
                         検索項目5</label>
                     <div class="col-sm-6" style="user-select: auto;">
-                        <input class="form-control" id="input-normal" type="text" name="input-normal" placeholder="Normal" style="user-select: auto;">
+                        <input class="form-control" id="input-normal" type="text" name="input-normal"
+                            placeholder="Normal" style="user-select: auto;">
                     </div>
                 </div>
                 <div class="form-group row" style="user-select: auto;">
                     <label class="col-sm-5 col-form-label" for="input-normal" style="user-select: auto;">
                         検索項目6</label>
                     <div class="col-sm-6" style="user-select: auto;">
-                        <input class="form-control" id="input-normal" type="text" name="input-normal" placeholder="Normal" style="user-select: auto;">
+                        <input class="form-control" id="input-normal" type="text" name="input-normal"
+                            placeholder="Normal" style="user-select: auto;">
                     </div>
                 </div>
 
@@ -62,9 +66,11 @@
     <div class="row">
         <div class="col-lg-12" style="user-select: auto;">
             <div class="card" style="user-select: auto;">
-                <div class="card-header" style="user-select: auto;"><i class="fa fa-align-justify" style="user-select: auto;"></i> ユーザー一覧</div>
+                <div class="card-header" style="user-select: auto;"><i class="fa fa-align-justify"
+                        style="user-select: auto;"></i> ユーザー一覧</div>
                 <div class="card-body" style="user-select: auto;">
-                    <table class="table table-responsive-sm table-bordered table-striped table-sm" style="user-select: auto;">
+                    <table class="table table-responsive-sm table-bordered table-striped table-sm"
+                        style="user-select: auto;">
                         <thead style="user-select: auto;">
                             <tr style="user-select: auto;">
                                 <th style="user-select: auto;">名前</th>
@@ -86,13 +92,16 @@
                                 <td style="user-select: auto;">{{ $user->name }}</td>
                                 <td style="user-select: auto;">{{ $user->email }}</td>
                                 <td style="user-select: auto;">{{ $user->band->name }}</td>
-                                <td style="user-select: auto;">{{ $user->role->name }}</td>
-                                <td style="user-select: auto;">{{ $user->userRole->name }}</td>
-                                <td style="user-select: auto;"><span class="badge badge-danger" style="user-select: auto;">Banned</span>
+                                <td style="user-select: auto;">{{ $user->admin_role_id }}</td>
+                                <td style="user-select: auto;">{{ $user->user_role_id }}</td>
+                                <td style="user-select: auto;"><span class="badge badge-danger"
+                                        style="user-select: auto;">Banned</span>
                                 </td>
-                                <td style="user-select: auto;"><span class="badge badge-danger" style="user-select: auto;">Banned</span>
+                                <td style="user-select: auto;"><span class="badge badge-danger"
+                                        style="user-select: auto;">Banned</span>
                                 </td>
-                                <td style="user-select: auto;"><span class="badge badge-danger" style="user-select: auto;">Banned</span>
+                                <td style="user-select: auto;"><span class="badge badge-danger"
+                                        style="user-select: auto;">Banned</span>
                                 </td>
                                 @endforeach
                             </tr>
@@ -109,47 +118,15 @@
         </div>
     </div>
     {{-- ここまでカード1 --}}
-</div>
 
 
-<div class="container">
-
-
-
-
-
-
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-
-
-
-
-            <div class="card">
-                <div class="card-header">バンドメンバー一覧
-                </div>
-                <table width="100%" border="1">
-                    <thead>
-                        <tr style="background-color: lightgray">
-                            <td>氏名</td>
-                            <td>所属バンド</td>
-                            <td>役割</td>
-                            <td>メールアドレス</td>
-                        </tr>
-                    </thead>
-                    @foreach ($users as $user)
-                    <tr>
-                        <td>{{ $user->name }}</td> {{-- 各要素を表示 --}}
-                        <td>{{ $user->band->name }}</td>
-                        <td>{{ $user->role->name }}</td>
-                        <td>{{ $user->email }}</td>
-                    </tr>
-                    @endforeach
-                </table>
-            </div>
-        </div>
+    <div class="container">
+        この下にコンポーネントが表示されます
+        <bootstrap-table-component models='@json($models)' />
     </div>
+
 </div>
+
 @endsection
 
 

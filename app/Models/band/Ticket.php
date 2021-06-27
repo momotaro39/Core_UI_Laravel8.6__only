@@ -93,7 +93,7 @@ use App\Models\band\Band;
  * @property integer $delete_user_id
  * @property string $deleted_at
  */
-class TicketList extends Model
+class Ticket extends Model
 {
 
 

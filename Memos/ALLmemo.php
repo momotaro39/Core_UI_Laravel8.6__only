@@ -536,9 +536,9 @@ Public function event()
   return $this->belongsTo(Event::class);
 }
 
-Public function ticket_list()
+Public function ticket()
 {
-  return $this->belongsTo(TicketList::class);
+  return $this->belongsTo(Ticket::class);
 }
 
 

@@ -66,7 +66,7 @@ class DatabaseSeeder extends Seeder
             GuestReservationsTableSeeder::class,
             PerformanceListsTableSeeder::class,
             ProceedsTableSeeder::class,
-            TicketListsTableSeeder::class,
+            TicketsTableSeeder::class,
 
         ]);
     }

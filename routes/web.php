@@ -31,7 +31,7 @@ use \Band\Admin\MusicController;
 use \Band\Admin\MusicalInstrumentController;
 use \Band\Admin\PerformanceListController;
 use \Band\Admin\ProceedController;
-use \Band\Admin\TicketListController;
+use \Band\Admin\TicketController;
 
 
 use \App\Http\Controllers\ApiSet\GitHubApiController;
@@ -235,7 +235,7 @@ Route::group(['middleware' => ['get.menu']], function () {
     // 管理者権限のみ
     Route::group(['middleware' => ['role:admin']], function () {
         Route::resource('bread',  'BreadController');   //create BREAD (resource)
-        Route::resource('users',        'UsersController')->except(['create', 'store']);
+        Route::resource('users', 'UsersController')->except(['create', 'store']);
         Route::resource('roles',        'RolesController');
         Route::resource('mail',        'MailController');
         Route::get('prepareSend/{id}',        'MailController@prepareSend')->name('prepareSend');
@@ -319,7 +319,7 @@ Route::group(['middleware' => ['get.menu']], function () {
 
             // まとめて設定することができる。６種類のルートを使う場合に使用。詳細だけいらない。インデックスだけ必要な場合は部分的なリソースルートかルーティングの個別に作成したほうが楽
             Route::resources([
-                // '/users'            => UserController::class,
+                'user'            => UserController::class,
                 'bands'            => BandMemberController::class,
                 // 'bandgoods'        => BandGoodsController::class,
                 'albums'           => AlbumController::class,
@@ -331,7 +331,7 @@ Route::group(['middleware' => ['get.menu']], function () {
                 // 'musicalinstrument' => MusicalInstrumentController::class,
                 'performancelists' => PerformanceListController::class,
                 'proceeds'         => ProceedController::class,
-                // 'ticketlists'      => TicketListController::class,
+                // 'Tickets'      => TicketController::class,
 
             ]);
 
@@ -356,7 +356,7 @@ Route::group(['middleware' => ['get.menu']], function () {
             Route::resource('goodstype', GoodsTypeController::class)->except([
                 'show',
             ]);
-            Route::resource('ticketlists', TicketListController::class)->except([
+            Route::resource('Tickets', TicketController::class)->except([
                 'show',
             ]);
             Route::resource('musicalinstrument', MusicalInstrumentController::class)->except([

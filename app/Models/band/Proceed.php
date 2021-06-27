@@ -163,9 +163,9 @@ class Proceed extends Model
         return $this->belongsTo(Event::class);
     }
 
-    public function ticket_list()
+    public function ticket()
     {
-        return $this->belongsTo(TicketList::class);
+        return $this->belongsTo(Tickets::class);
     }
 
 
@@ -493,4 +493,81 @@ class Proceed extends Model
     | $sectionList = MSection::getSectionList();  //見本
     |
     */
+
+
+
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | 計算処理
+    |--------------------------------------------------------------------------
+    | 使い所
+    | number_formatメソッドで数字の型を合わせる
+    |
+    | sum()メソッドで合計数を表す。引数（カラム名、小数点）
+    | sum('estimated_production_costs'), 2)
+    |
+    |
+    */
+
+    /**
+     * 受注金額を返します
+     *
+     * @return void
+     */
+    // public function getDispOrderAmountAttribute()
+    // {
+    //     return isset($this->order_amount) ? number_format($this->order_amount) : 0;
+    // }
+
+    /**
+     * 仕入金額を返します
+     *
+     * @return void
+     */
+    // public function getDispPurchaseAmountAttribute()
+    // {
+    //     return isset($this->purchase_amount) ? number_format($this->purchase_amount) : 0;
+    // }
+
+    /**
+     * 合計見積工数を返す
+     *
+     * @param
+     * @return void
+     */
+    // public function getSumEstimatedProductionCostAttribute()
+    // {
+    //     return isset($this->tasks)  ? number_format($this->tasks->sum('estimated_production_costs'), 2) : null;
+    // }
+
+
+
+    /**
+     * 進捗率を計算して返します
+     * 進捗率 = (完了タスクの見積工数 / 全タスクの見積工数) * 100
+     *
+     * @param [type] $projectId
+     * @return void
+     */
+    // public static function getProgressRate($projectId)
+    // {
+    //     $project = self::find($projectId);
+    //     $totalTaskEstimatedCost = $project->tasks->sum('estimated_production_costs');
+    //     if (
+    //         $totalTaskEstimatedCost == 0
+    //     ) {
+    //         //合計見積工数が0の場合はタスクの個数単位での進捗比率を算出
+    //         $progressRate = ($project->tasks->where('status', config('const.status.stop'))->count() / $project->tasks->count()) * 100;
+    //     } else {
+    //         //見積工数が設定されている場合は見積工数に対する完了比率を算出
+    //         $totalTaskEstimatedCostComplete = $project->tasks->where('status', config('const.status.stop'))->sum('estimated_production_costs');
+    //         $progressRate = ($totalTaskEstimatedCostComplete / $totalTaskEstimatedCost) * 100;
+    //     }
+    //     return $progressRate != 0 ? number_format($progressRate, 2) : 0;
+    // }
+
+
+
 }

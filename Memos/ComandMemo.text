@@ -20,7 +20,7 @@ memo.text
 php artisan make:migration create_performance_lists_table
 php artisan make:migration create_goods_types_table
 php artisan make:migration create_guest_reservations_table
-php artisan make:migration create_ticket_lists_table
+php artisan make:migration create_tickets_table
 php artisan make:migration create_proceeds_table
 php artisan make:migration create_musicalInstruments_table
 php artisan make:migration create_albums_table
@@ -33,7 +33,7 @@ php artisan make:migration create_hall_table
 
 まとめて一気に作る
 
-php artisan make:migration create_performance_lists_table && php artisan make:migration create_goods_types_table && php artisan make:migration create_guest_reservations_table && php artisan make:migration create_ticket_lists_table && php artisan make:migration create_proceeds_table
+php artisan make:migration create_performance_lists_table && php artisan make:migration create_goods_types_table && php artisan make:migration create_guest_reservations_table && php artisan make:migration create_tickets_table && php artisan make:migration create_proceeds_table
 php artisan make:migration create_albums_table && php artisan make:migration create_labels_table && php artisan make:migration create_musics_table && php artisan make:migration create_events_table && php artisan make:migration create_entrys_table && php artisan make:migration create_hall_table
 
 
@@ -217,7 +217,7 @@ php artisan krlove:generate:model GoodsType --table-name=goods_types
     6  php artisan krlove:generate:model Proceed --table-name=proceeds
     7  php artisan krlove:generate:model BandGoods --table-name=band_goods
     8  php artisan krlove:generate:model PerformanceList --table-name=performance_lists
-    9  php artisan krlove:generate:model TicketList --table-name=ticket_lists
+    9  php artisan krlove:generate:model TicketList --table-name=tickets
 
     // マイグレーションファイルがないときは作成
    11  php artisan migrate create_user_types_table

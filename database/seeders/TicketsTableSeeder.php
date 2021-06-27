@@ -5,10 +5,10 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 
 // functionで一気に入れる場合はuse文を使って入力します
-use App\Models\band\TicketList;
+use App\Models\band\Ticket;
 use Illuminate\Support\Facades\DB;
 
-class TicketListsTableSeeder extends Seeder
+class TicketsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -19,31 +19,51 @@ class TicketListsTableSeeder extends Seeder
      */
     public function run()
     {
-        TicketList::flushEventListeners();
-        DB::table('ticket_lists')->truncate();
+        Ticket::flushEventListeners();
+        DB::table('tickets')->truncate();
 
         // 代入する項目の変数を作ります。
-        $ticketLists = [
+        $tickets = [
             [
+                'event_id' => 1,
+                'rank' => 'S席',
+                'sheet' => 'アリーナ',
+                'unit_price' => 100,
+                'sold_number' => 200,
                 'rank' => 'S席',
                 'memo' => 'オフィシャル2021プレミア',
             ],
             [
+                'event_id' => 1,
                 'rank' => 'A席',
+                'sheet' => 'アリーナ',
+                'unit_price' => 100,
+                'sold_number' => 200,
                 'memo' => 'オフィシャル2021プレミア',
             ],
             [
-                'rank' => 'B席',
+                'event_id' => 1,
+                'rank' => 'S席',
+                'sheet' => 'ホール',
+                'unit_price' => 100,
+                'sold_number' => 200,
                 'memo' => 'オフィシャル2021プレミア',
             ],
 
         ];
 
         // それぞれ変数の分だけデータを作成します
-        foreach ($ticketLists as $ticketList) {
-            TicketList::create([
-                'rank'           => $ticketList['rank'],
-                'memo'           => $ticketList['memo'],
+        foreach ($tickets as $ticket) {
+            Ticket::create([
+
+
+                'event_id'           => $ticket['event_id'],
+                'rank'           => $ticket['rank'],
+                'sheet'           => $ticket['sheet'],
+                'unit_price'           => $ticket['unit_price'],
+                'sold_number'           => $ticket['sold_number'],
+                'rank'           => $ticket['rank'],
+                'memo'           => $ticket['memo'],
                 'create_user_id' => 1,
                 'update_user_id' => 1,
                 'created_at'     => date('Y-m-d H:i:s'),

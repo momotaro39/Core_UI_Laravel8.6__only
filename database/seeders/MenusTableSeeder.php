@@ -267,7 +267,7 @@ class MenusTableSeeder extends Seeder
         //             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
         //         </svg> イベント売上一覧</a></li>
 
-        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core/ticketlists">
+        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core/tickets">
         //         <svg class="c-sidebar-nav-icon">
         //             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
         //         </svg> チケットリスト一覧</a></li>
