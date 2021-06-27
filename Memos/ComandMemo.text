@@ -295,7 +295,19 @@ php artisan make:factory AlbumFactory --model=Album && php artisan make:factory 
 |
 */
 
+Next step
+# in your app directory
+# generate laravel APP_KEY
+$ php artisan key:generate
 
+# run database migration and seed
+$ php artisan migrate:refresh --seed
+
+# generate mixing
+$ npm run dev
+
+# and repeat generate mixing
+$ npm run dev
 
 
 /*

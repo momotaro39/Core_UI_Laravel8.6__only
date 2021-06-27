@@ -12,12 +12,19 @@
     <div class="row">
         <div class="col-lg-12" style="user-select: auto;">
             <div class="card" style="user-select: auto;">
-                <div class="card-header" style="user-select: auto;"><i class="fa fa-align-justify" style="user-select: auto;"></i> チケットマスタ</div>
+                <div class="card-header" style="user-select: auto;"><i class="fa fa-align-justify"
+                        style="user-select: auto;"></i> チケットマスタ</div>
                 <div class="card-body" style="user-select: auto;">
-                    <table class="table table-responsive-sm table-bordered table-striped table-sm" style="user-select: auto;">
+                    <table class="table table-responsive-sm table-bordered table-striped table-sm"
+                        style="user-select: auto;">
                         <thead style="user-select: auto;">
                             <tr style="user-select: auto;">
+                                <th style="user-select: auto;">イベント名</th>
                                 <th style="user-select: auto;">チケットタイプ</th>
+                                <th style="user-select: auto;">シート</th>
+                                <th style="user-select: auto;">単価</th>
+                                <th style="user-select: auto;">チケット枚数</th>
+                                <th style="user-select: auto;">チケット販売予定額</th>
                                 <th style="user-select: auto;">備考</th>
                                 <th style="user-select: auto;">編集</th>
                                 <th style="user-select: auto;">削除</th>
@@ -26,15 +33,22 @@
                         <tbody style="user-select: auto;">
                             <tr style="user-select: auto;">
 
-                                @foreach ($ticketLists as $ticketList)
+                                @foreach ($tickets as $ticket)
                             </tr>
                             <tr style="user-select: auto;">
-                                <td style="user-select: auto;">{{$ticketList->rank}}</td>
-                                <td style="user-select: auto;">{{$ticketList->memo}}</td>
+                                <td style="user-select: auto;">{{$ticket->event_id}}</td>
+                                <td style="user-select: auto;">{{$ticket->rank}}</td>
+                                <td style="user-select: auto;">{{$ticket->sheet}}</td>
+                                <td style="user-select: auto;">{{$ticket->unit_price}}</td>
+                                <td style="user-select: auto;">{{$ticket->sold_number}}</td>
+                                <td style="user-select: auto;">{{$ticket->unit_price * $ticket->sold_number}}</td>
+                                <td style="user-select: auto;">{{$ticket->memo}}</td>
 
-                                <td style="user-select: auto;"><span class="badge badge-danger" style="user-select: auto;">Banned</span>
+                                <td style="user-select: auto;"><span class="badge badge-danger"
+                                        style="user-select: auto;">Banned</span>
                                 </td>
-                                <td style="user-select: auto;"><span class="badge badge-danger" style="user-select: auto;">Banned</span>
+                                <td style="user-select: auto;"><span class="badge badge-danger"
+                                        style="user-select: auto;">Banned</span>
                                 </td>
                                 @endforeach
                             </tr>

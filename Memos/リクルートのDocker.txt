@@ -30,3 +30,6 @@ npm install && npm run dev
 
 
 npm install && npm run dev
+
+
+php artisan migrate:refresh --seed

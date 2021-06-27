@@ -28,6 +28,7 @@ class GuestReservationsTableSeeder extends Seeder
             [
                 'event_id' => 1,
                 'user_id'  => 1,
+                'ticket_id'  => 1,
             ],
 
 
@@ -38,6 +39,7 @@ class GuestReservationsTableSeeder extends Seeder
             GuestReservation::create([
                 'event_id'          => $guestReservation['event_id'],
                 'user_id'           => $guestReservation['user_id'],
+                'ticket_id'           => $guestReservation['ticket_id'],
                 'create_user_id'    => 1,
                 'update_user_id'    => 1,
                 'created_at'        => date('Y-m-d H:i:s'),

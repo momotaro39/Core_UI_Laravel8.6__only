@@ -356,7 +356,7 @@ Route::group(['middleware' => ['get.menu']], function () {
             Route::resource('goodstype', GoodsTypeController::class)->except([
                 'show',
             ]);
-            Route::resource('Tickets', TicketController::class)->except([
+            Route::resource('tickets', TicketController::class)->except([
                 'show',
             ]);
             Route::resource('musicalinstrument', MusicalInstrumentController::class)->except([
