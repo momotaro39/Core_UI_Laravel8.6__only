@@ -136,6 +136,8 @@ class UserController extends Controller
 
         // $queriesList = $queriesList->paginate($paginateNum); //ページネーション用
 
+        // ブートスストラップテーブルで使用
+        $models = User::all();
 
 
         /***************************
@@ -155,6 +157,7 @@ class UserController extends Controller
             'conditions',
             // 加工情報
             'queriesList',
+            'models',
         );
 
         return view('MemberManagement.users.index', $requestData);
@@ -236,7 +239,7 @@ class UserController extends Controller
         //
     }
 
-   /*
+    /*
     |--------------------------------------------------------------------------
     | 更新画面を表示
     |--------------------------------------------------------------------------
@@ -341,6 +344,4 @@ class UserController extends Controller
         }
         return $query;
     }
-
-
 }

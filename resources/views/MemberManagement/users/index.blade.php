@@ -120,13 +120,14 @@
     {{-- ここまでカード1 --}}
 
 
-    <div class="container">
-        この下にコンポーネントが表示されます
+
+    <div id="app">
+
         <bootstrap-table-component models='@json($models)' />
     </div>
 
 </div>
-
+<script src="{{ mix('js/app.js') }}"></script>
 @endsection
 
 

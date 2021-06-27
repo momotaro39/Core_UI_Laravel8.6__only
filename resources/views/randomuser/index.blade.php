@@ -13,7 +13,6 @@
                     <div class="card-body">
                         <div id="app">
                             <randomuser-component></randomuser-component>
-                            <dog-component></dog-component>
                         </div>
 
                     </div>

@@ -39,10 +39,9 @@
                 myColumns: [
                     { field: 'id', title: 'ID', sortable: true },
                     { field: 'name', title: '名前', sortable: true, filterControl: 'input' },
-                    { field: 'employee_id', title: '社員番号', sortable: true, filterControl: 'input' },
-                    { field: 'year', title: '年齢', sortable: true, filterControl: 'select'},
-                    { field: 'email', title: 'E-Mail', sortable: true, filterControl: 'input'},
-                    { field: 'dept', title: '部署', sortable: true, filterControl: 'select'},
+                    { field: 'admin_role_id', title: '管理番号', sortable: true, filterControl: 'input' },
+                    { field: 'user_role_id', title: '顧客判別番号', sortable: true, filterControl: 'select' },
+                    { field: 'band_id', title: 'バンド番号', sortable: true, filterControl: 'select' },
                     {
                         field: 'action',
                         title: 'Actions',

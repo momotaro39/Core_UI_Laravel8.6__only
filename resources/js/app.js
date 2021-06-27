@@ -19,11 +19,6 @@ require("bootstrap-table/dist/extensions/print/bootstrap-table-print.min.js");
 require("bootstrap-table/dist/extensions/filter-control/bootstrap-table-filter-control.min.css");
 require("bootstrap-table/dist/extensions/filter-control/bootstrap-table-filter-control.min.js");
 
-Vue.component(
-    "bootstrap-table-component",
-    require("./components/BootstrapTableComponent.vue").default
-);
-
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -55,6 +50,11 @@ Vue.component(
 Vue.component(
     "dog-component",
     require("./components/DogApiComponent.vue").default
+);
+
+Vue.component(
+    "bootstrap-table-component",
+    require("./components/BootstrapTableComponent.vue").default
 );
 
 /**
