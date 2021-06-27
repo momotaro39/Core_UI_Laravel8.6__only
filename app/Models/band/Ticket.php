@@ -485,6 +485,32 @@ class Ticket extends Model
     |
     |
     */
+    /**
+     *
+     * @param [type] $projectId
+     * @return void
+     */
+    public static function getProgressRate($ticketId)
+    {
+
+        // 自分のモデルの主キーを取得
+        $ticketData = self::find($tiketId);
+
+
+        $totalTaskEstimatedCost = $project->tasks->sum('estimated_production_costs');
+        if (
+            $totalTaskEstimatedCost == 0
+        ) {
+            //合計見積工数が0の場合はタスクの個数単位での進捗比率を算出
+            $progressRate = ($project->tasks->where('status', config('const.status.stop'))->count() / $project->tasks->count()) * 100;
+        } else {
+            //見積工数が設定されている場合は見積工数に対する完了比率を算出
+            $totalTaskEstimatedCostComplete = $project->tasks->where('status', config('const.status.stop'))->sum('estimated_production_costs');
+            $progressRate = ($totalTaskEstimatedCostComplete / $totalTaskEstimatedCost) * 100;
+        }
+        return $progressRate != 0 ? number_format($progressRate, 2) : 0;
+    }
+
 
     public static function getSumPartProceed()
     {
