@@ -18,13 +18,13 @@
             {{-- ヘッダーの←上のメニュー一覧 --}}
             <ul class="c-header-nav d-md-down-none">
                 <li class="c-header-nav-item px-3"><a class="c-header-nav-link"
-                        href="http://localhost/core">Dashboard1</a></li>
+                        href="{{ url('/core/') }}">Dashboard1</a></li>
                 <li class="c-header-nav-item px-3"><a class="c-header-nav-link"
-                        href="http://localhost/core">Dashboard2</a></li>
+                        href="{{ url('/core/') }}">Dashboard2</a></li>
                 <li class="c-header-nav-item px-3"><a class="c-header-nav-link"
-                        href="http://localhost/core">Dashboard3</a></li>
+                        href="{{ url('/core/') }}">Dashboard3</a></li>
                 <li class="c-header-nav-item px-3"><a class="c-header-nav-link"
-                        href="http://localhost/core">Dashboard4</a></li>
+                        href="{{ url('/core/') }}">Dashboard4</a></li>
 
             </ul>
             {{-- ヘッダー右上のエリア （現在消えています。リンクを設定しましょう） --}}
