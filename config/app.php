@@ -52,7 +52,11 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    // ローカル環境で行う場合はこちらを使用
+    'url' => env('APP_URL', 'http://localhost:8000'),
+    // 本番環境で行う場合はこちらを使用
+    // 'url' => env('APP_URL', 'http://laravel8-core.garapiko.xyz'),
+
 
     'asset_url' => env('ASSET_URL', null),
 

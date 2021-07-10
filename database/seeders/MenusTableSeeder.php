@@ -175,99 +175,99 @@ class MenusTableSeeder extends Seeder
         // ここまでドロップダウン
 
 
-        //         <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core/adminroles">
+        //         <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ url('/core/adminroles') }}">
         //         <svg class="c-sidebar-nav-icon">
         //             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
         //         </svg>管理役割マスタ</a></li>
 
-        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core/userroles">
+        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ url('/core/userroles') }}">
         //         <svg class="c-sidebar-nav-icon">
         //             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
         //         </svg>利用者役割マスタ</a></li>
 
-        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core/musicalinstrument">
+        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ url('/core/musicalinstrument') }}">
         //         <svg class="c-sidebar-nav-icon">
         //             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
         //         </svg>楽器マスタ</a></li>
 
 
-        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core/users">
+        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ url('/core/users') }}">
         //         <svg class="c-sidebar-nav-icon">
         //             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
         //         </svg> ユーザーマスタ</a></li>
 
-        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core/members">
+        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ url('/core/members') }}">
         //         <svg class="c-sidebar-nav-icon">
         //             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
         //         </svg> バンドメンバーマスタ</a></li>
 
-        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core/bands">
+        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ url('/core/bands') }}">
         //         <svg class="c-sidebar-nav-icon">
         //             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
         //         </svg> バンド名マスタ</a></li>
 
-        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core/bandadmin">
+        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ url('/core/bandadmin') }}">
         //         <svg class="c-sidebar-nav-icon">
         //             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
         //         </svg> バンド管理者マスタ</a></li>
 
-        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core/bandgoods">
+        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ url('/core/bandgoods') }}">
         //         <svg class="c-sidebar-nav-icon">
         //             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
         //         </svg> バンドグッズマスタ</a></li>
 
 
-        //         <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core/goodstype">
+        //         <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ url('/core/goodstype') }}">
         //         <svg class="c-sidebar-nav-icon">
         //             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
         //         </svg> バンドグッズタイプマスタ</a></li>
 
-        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core/albums">
+        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ url('/core/albums') }}">
         //         <svg class="c-sidebar-nav-icon">
         //             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
         //         </svg> アルバムマスタ</a></li>
 
-        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core/entries">
+        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ url('/core/entries') }}">
         //         <svg class="c-sidebar-nav-icon">
         //             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
         //         </svg> バンドエントリー</a></li>
 
-        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core/events">
+        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ url('/core/events') }}">
         //         <svg class="c-sidebar-nav-icon">
         //             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
         //         </svg> イベントマスタ</a></li>
 
-        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core/halls">
+        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ url('/core/halls') }}">
         //         <svg class="c-sidebar-nav-icon">
         //             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
         //         </svg> イベントホールマスタ</a></li>
 
-        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core/labels">
+        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ url('/core/labels') }}">
         //         <svg class="c-sidebar-nav-icon">
         //             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
         //         </svg> レーベルマスタ</a></li>
 
-        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core/musics">
+        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ url('/core/musics') }}">
         //         <svg class="c-sidebar-nav-icon">
         //             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
         //         </svg> 曲マスタ</a></li>
 
-        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core/performancelists">
+        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ url('/core/performancelists') }}">
         //         <svg class="c-sidebar-nav-icon">
         //             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
         //         </svg> イベントセットリスト一覧</a></li>
 
-        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core/guestreservation">
+        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ url('/core/guestreservation') }}">
         //         <svg class="c-sidebar-nav-icon">
         //             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
         //         </svg> イベント予約状況一覧</a></li>
 
-        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core/proceeds">
+        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ url('/core/proceeds') }}">
         //         <svg class="c-sidebar-nav-icon">
         //             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
         //         </svg> イベント売上一覧</a></li>
 
-        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core/tickets">
+        // <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ url('/core/tickets') }}">
         //         <svg class="c-sidebar-nav-icon">
         //             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
         //         </svg> チケットリスト一覧</a></li>

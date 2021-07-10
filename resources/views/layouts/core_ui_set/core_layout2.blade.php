@@ -14,34 +14,34 @@
         </div>
         {{-- ここからサイドバーの文字列を設定します --}}
         <ul class="c-sidebar-nav">
-            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core">
+            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ url('/core/core') }}">
                     <svg class="c-sidebar-nav-icon">
                         <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
                     </svg> Dashboard<span class="badge badge-info">NEW</span></a></li>
             <li class="c-sidebar-nav-title">Original API テスト</li>
-            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/name">
+            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ url('/core/name') }}">
                     <svg class="c-sidebar-nav-icon">
                         <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
                     </svg>name API テスト</a></li>
-            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/todo">
+            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ url('/core/todo') }}">
                     <svg class="c-sidebar-nav-icon">
                         <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
                     </svg>todo API 一覧</a></li>
-            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/core">
+            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ url('/core/core') }}">
                     <svg class="c-sidebar-nav-icon">
                         <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
                     </svg>Original API 1 </a></li>
-            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/top_page">
+            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ url('/core/top_page') }}">
                     <svg class="c-sidebar-nav-icon">
                         <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
                     </svg> バンドメンバー管理一覧</a></li>
 
-            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/home">
+            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ url('/core/home') }}">
                     <svg class="c-sidebar-nav-icon">
                         <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
                     </svg> バンドメンバー管理ダッシュボード</a></li>
 
-            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/Welcome">
+            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ url('/core/Welcome') }}">
                     <svg class="c-sidebar-nav-icon">
                         <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
                     </svg> Laravel Welcome画面</a></li>
@@ -51,34 +51,31 @@
                     </svg> 参考DEMO</a></li>
 
             <li class="c-sidebar-nav-title">フロントエンド テスト</li>
-            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/marble">
+            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ url('/core/marble') }}">
                     <svg class="c-sidebar-nav-icon">
                         <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
                     </svg>merble テンプレート</a></li>
-            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/front/lp/polo">
+            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ url('/core/front/lp/polo') }}">
                     <svg class="c-sidebar-nav-icon">
                         <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
                     </svg>polo テンプレート</a></li>
-            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/front/lp/polo">
+            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ url('/core/front/lp/polo') }}">
                     <svg class="c-sidebar-nav-icon">
                         <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
                     </svg>polo テンプレート</a></li>
-            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="http://localhost/front/lp/polo">
+            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ url('/core/front/lp/polo') }}">
                     <svg class="c-sidebar-nav-icon">
                         <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
                     </svg>polo テンプレート</a></li>
 
             <li class="c-sidebar-nav-title">Components</li>
-            <li class="c-sidebar-nav-item c-sidebar-nav-dropdown"><a
-                    class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
+            <li class="c-sidebar-nav-item c-sidebar-nav-dropdown"><a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
                     <svg class="c-sidebar-nav-icon">
                         <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-puzzle"></use>
                     </svg> Base</a>
                 <ul class="c-sidebar-nav-dropdown-items">
-                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="base/breadcrumb.html"><span
-                                class="c-sidebar-nav-icon"></span> Breadcrumb</a></li>
-                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="base/cards.html"><span
-                                class="c-sidebar-nav-icon"></span> Cards</a></li>
+                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="base/breadcrumb.html"><span class="c-sidebar-nav-icon"></span> Breadcrumb</a></li>
+                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="base/cards.html"><span class="c-sidebar-nav-icon"></span> Cards</a></li>
                 </ul>
             </li>
 
@@ -88,8 +85,7 @@
                     </svg> Widgets<span class="badge badge-info">NEW</span></a></li>
             <li class="c-sidebar-nav-divider"></li>
 
-            <li class="c-sidebar-nav-item c-sidebar-nav-dropdown"><a
-                    class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
+            <li class="c-sidebar-nav-item c-sidebar-nav-dropdown"><a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
                     <svg class="c-sidebar-nav-icon">
                         <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-star"></use>
                     </svg> Pages</a>
@@ -105,26 +101,22 @@
 
                 </ul>
             </li>
-            <li class="c-sidebar-nav-item mt-auto"><a class="c-sidebar-nav-link c-sidebar-nav-link-success"
-                    href="https://coreui.io" target="_top">
+            <li class="c-sidebar-nav-item mt-auto"><a class="c-sidebar-nav-link c-sidebar-nav-link-success" href="https://coreui.io" target="_top">
                     <svg class="c-sidebar-nav-icon">
                         <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-cloud-download"></use>
                     </svg> Download CoreUI</a></li>
-            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link c-sidebar-nav-link-danger"
-                    href="https://coreui.io/pro/" target="_top">
+            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link c-sidebar-nav-link-danger" href="https://coreui.io/pro/" target="_top">
                     <svg class="c-sidebar-nav-icon">
                         <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-layers"></use>
                     </svg> Try CoreUI</a></li>
         </ul>
-        <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent"
-            data-class="c-sidebar-minimized"></button>
+        <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent" data-class="c-sidebar-minimized"></button>
     </div>
-{{-- サイドバーはここまで --}}
+    {{-- サイドバーはここまで --}}
     {{-- ヘッドの部分の記載 --}}
     <div class="c-wrapper c-fixed-components">
         <header class="c-header c-header-light c-header-fixed c-header-with-subheader">
-            <button class="c-header-toggler c-class-toggler d-lg-none mfe-auto" type="button" data-target="#sidebar"
-                data-class="c-sidebar-show">
+            <button class="c-header-toggler c-class-toggler d-lg-none mfe-auto" type="button" data-target="#sidebar" data-class="c-sidebar-show">
                 <svg class="c-icon c-icon-lg">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-menu"></use>
                 </svg>
@@ -132,8 +124,7 @@
                 <svg width="118" height="46" alt="CoreUI Logo">
                     <use xlink:href="assets/coreui_assets//brand/coreui.svg#full"></use>
                 </svg></a>
-            <button class="c-header-toggler c-class-toggler mfs-3 d-md-down-none" type="button" data-target="#sidebar"
-                data-class="c-sidebar-lg-show" responsive="true">
+            <button class="c-header-toggler c-class-toggler mfs-3 d-md-down-none" type="button" data-target="#sidebar" data-class="c-sidebar-lg-show" responsive="true">
                 <svg class="c-icon c-icon-lg">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-menu"></use>
                 </svg>
@@ -141,18 +132,14 @@
 
             {{-- ヘッダーの←上のメニュー一覧 --}}
             <ul class="c-header-nav d-md-down-none">
-                <li class="c-header-nav-item px-3"><a class="c-header-nav-link"
-                        href="http://localhost/core">Dashboard1</a></li>
-                <li class="c-header-nav-item px-3"><a class="c-header-nav-link"
-                        href="http://localhost/core">Dashboard2</a></li>
-                <li class="c-header-nav-item px-3"><a class="c-header-nav-link"
-                        href="http://localhost/core">Dashboard3</a></li>
-                <li class="c-header-nav-item px-3"><a class="c-header-nav-link"
-                        href="http://localhost/core">Dashboard4</a></li>
+                <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="{{ url('/core/core">Dashboard1</a></l') }}i>
+                <li class=" c-header-nav-item px-3"><a class="c-header-nav-link" href="{{ url('/core/core">Dashboard2</a></l') }}i>
+                <li class=" c-header-nav-item px-3"><a class="c-header-nav-link" href="{{ url('/core/core">Dashboard3</a></l') }}i>
+                <li class=" c-header-nav-item px-3"><a class="c-header-nav-link" href="{{ url('/core/core">Dashboard4</a></l') }}i>
 
             </ul>
             {{-- ヘッダー右上のエリア （現在消えています。リンクを設定しましょう） --}}
-            <ul class="c-header-nav ml-auto mr-4">
+            <ul class=" c-header-nav ml-auto mr-4">
                 <li class="c-header-nav-item d-md-down-none mx-2"><a class="c-header-nav-link" href="#">
                         <svg class="c-icon">
                             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-bell"></use>
@@ -165,33 +152,26 @@
                         <svg class="c-icon">
                             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
                         </svg></a></li>
-                <li class="c-header-nav-item dropdown"><a class="c-header-nav-link" data-toggle="dropdown" href="#"
-                        role="button" aria-haspopup="true" aria-expanded="false">
-                        <div class="c-avatar"><img class="c-avatar-img" src="/coreui_assets/img/avatars/6.jpg"
-                                alt="user@email.com"></div>
+                <li class="c-header-nav-item dropdown"><a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        <div class="c-avatar"><img class="c-avatar-img" src="/coreui_assets/img/avatars/6.jpg" alt="user@email.com"></div>
                     </a>
 
                     {{-- ドロップダウンリストがここに該当します --}}
                     <div class="dropdown-menu dropdown-menu-right pt-0">
-                        <div class="dropdown-header bg-light py-2"><strong>Account</strong></div><a
-                            class="dropdown-item" href="#">
+                        <div class="dropdown-header bg-light py-2"><strong>Account</strong></div><a class="dropdown-item" href="#">
                             <svg class="c-icon mr-2">
                                 <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-bell"></use>
-                            </svg> Updates<span class="badge badge-info ml-auto">42</span></a><a class="dropdown-item"
-                            href="#">
+                            </svg> Updates<span class="badge badge-info ml-auto">42</span></a><a class="dropdown-item" href="#">
                             <svg class="c-icon mr-2">
                                 <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
-                            </svg> Messages<span class="badge badge-success ml-auto">42</span></a><a
-                            class="dropdown-item" href="#">
+                            </svg> Messages<span class="badge badge-success ml-auto">42</span></a><a class="dropdown-item" href="#">
                             <svg class="c-icon mr-2">
                                 <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-task"></use>
-                            </svg> Tasks<span class="badge badge-danger ml-auto">42</span></a><a class="dropdown-item"
-                            href="#">
+                            </svg> Tasks<span class="badge badge-danger ml-auto">42</span></a><a class="dropdown-item" href="#">
                             <svg class="c-icon mr-2">
                                 <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-comment-square"></use>
                             </svg> Comments<span class="badge badge-warning ml-auto">42</span></a>
-                        <div class="dropdown-header bg-light py-2"><strong>Settings</strong></div><a
-                            class="dropdown-item" href="#">
+                        <div class="dropdown-header bg-light py-2"><strong>Settings</strong></div><a class="dropdown-item" href="#">
                             <svg class="c-icon mr-2">
                                 <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
                             </svg> Profile</a><a class="dropdown-item" href="#">
@@ -200,8 +180,7 @@
                             </svg> Settings</a><a class="dropdown-item" href="#">
                             <svg class="c-icon mr-2">
                                 <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-credit-card"></use>
-                            </svg> Payments<span class="badge badge-secondary ml-auto">42</span></a><a
-                            class="dropdown-item" href="#">
+                            </svg> Payments<span class="badge badge-secondary ml-auto">42</span></a><a class="dropdown-item" href="#">
                             <svg class="c-icon mr-2">
                                 <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-file"></use>
                             </svg> Projects<span class="badge badge-primary ml-auto">42</span></a>

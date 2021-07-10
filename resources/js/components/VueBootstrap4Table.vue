@@ -133,7 +133,7 @@ export default {
         fetchData() {
             let self = this;
             axios
-                .get("http://localhost:8000/api/members", {
+                .get("{ url('/core/api/members') }}", {
                     params: {
                         queryParams: this.queryParams
                     }

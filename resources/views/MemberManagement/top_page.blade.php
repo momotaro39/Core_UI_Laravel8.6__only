@@ -11,26 +11,26 @@
         <div class="card">
             <div class="card-header"> TOPページの一覧<small>一覧系はここに掲載します</small></div>
             <div class="card-body">
-                <div class="list-group"><a class="list-group-item active" href="#">マスタ一覧セット</a>
-                    <a class="list-group-item list-group-item-action" href="http://localhost/core/adminroles">管理役割マスタ</a>
-                    <a class="list-group-item list-group-item-action" href="http://localhost/core/userroles">利用者役割マスタ</a>
-                    <a class="list-group-item list-group-item-action" href="http://localhost/core/goodstype">バンドグッズタイプマスタ</a>
-                    <a class="list-group-item list-group-item-action" href="http://localhost/core/musicalinstrument">楽器マスタ</a>
-                    <a class="list-group-item list-group-item-action" href="http://localhost/core/users">ユーザーマスタ</a>
-                    <a class="list-group-item list-group-item-action" href="http://localhost/core/members">バンドメンバーマスタ</a>
-                    <a class="list-group-item list-group-item-action" href="http://localhost/core/bands">バンド名マスタ</a>
-                    <a class="list-group-item list-group-item-action" href="http://localhost/core/bandadmin">バンド管理者マスタ</a>
-                    <a class="list-group-item list-group-item-action" href="http://localhost/core/bandgoods">バンドグッズマスタ</a>
-                    <a class="list-group-item list-group-item-action" href="http://localhost/core/albums">アルバムマスタ</a>
-                    <a class="list-group-item list-group-item-action" href="http://localhost/core/events">イベントマスタ</a>
-                    <a class="list-group-item list-group-item-action" href="http://localhost/core/halls">イベントホールマスタ</a>
-                    <a class="list-group-item list-group-item-action" href="http://localhost/core/labels">レーベルマスタ</a>
-                    <a class="list-group-item list-group-item-action" href="http://localhost/core/musics">曲マスタ</a>
-                    <a class="list-group-item list-group-item-action" href="http://localhost/core/entries">バンドエントリー </a>
-                    <a class="list-group-item list-group-item-action" href="http://localhost/core/performancelists">イベントセットリスト一覧 </a>
-                    <a class="list-group-item list-group-item-action" href="http://localhost/core/guestreservation">イベント予約状況一覧 </a>
-                    <a class="list-group-item list-group-item-action" href="http://localhost/core/proceeds">イベント売上一覧 </a>
-                    <a class="list-group-item list-group-item-action" href="http://localhost/core/ticketlists">チケットリスト一覧 </a>
+                <div class="list-group"><a class="list-group-item active">マスタ一覧セット</a>
+                    <a class="list-group-item list-group-item-action" href="{{ url('/core/adminroles') }}">管理役割マスタ</a>
+                    <a class="list-group-item list-group-item-action" href="{{ url('/core/userroles') }}">利用者役割マスタ</a>
+                    <a class="list-group-item list-group-item-action" href="{{ url('/core/goodstype') }}">バンドグッズタイプマスタ</a>
+                    <a class="list-group-item list-group-item-action" href="{{ url('/core/musicalinstrument') }}">楽器マスタ</a>
+                    <a class="list-group-item list-group-item-action" href="{{ url('/core/users') }}">ユーザーマスタ</a>
+                    <a class="list-group-item list-group-item-action" href="{{ url('/core/members') }}">バンドメンバーマスタ</a>
+                    <a class="list-group-item list-group-item-action" href="{{ url('/core/bands') }}">バンド名マスタ</a>
+                    <a class="list-group-item list-group-item-action" href="{{ url('/core/bandadmin') }}">バンド管理者マスタ</a>
+                    <a class="list-group-item list-group-item-action" href="{{ url('/core/bandgoods') }}">バンドグッズマスタ</a>
+                    <a class="list-group-item list-group-item-action" href="{{ url('/core/albums') }}">アルバムマスタ</a>
+                    <a class="list-group-item list-group-item-action" href="{{ url('/core/events') }}">イベントマスタ</a>
+                    <a class="list-group-item list-group-item-action" href="{{ url('/core/halls') }}">イベントホールマスタ</a>
+                    <a class="list-group-item list-group-item-action" href="{{ url('/core/labels') }}">レーベルマスタ</a>
+                    <a class="list-group-item list-group-item-action" href="{{ url('/core/musics') }}">曲マスタ</a>
+                    <a class="list-group-item list-group-item-action" href="{{ url('/core/entries') }}">バンドエントリー </a>
+                    <a class="list-group-item list-group-item-action" href="{{ url('/core/performancelists') }}">イベントセットリスト一覧 </a>
+                    <a class="list-group-item list-group-item-action" href="{{ url('/core/guestreservation') }}">イベント予約状況一覧 </a>
+                    <a class="list-group-item list-group-item-action" href="{{ url('/core/proceeds') }}">イベント売上一覧 </a>
+                    <a class="list-group-item list-group-item-action" href="{{ url('/core/ticketlists') }}">チケットリスト一覧 </a>
 
                     <a class="list-group-item list-group-item-action disabled" href="#">リンクなし 見本</a>
                 </div>
