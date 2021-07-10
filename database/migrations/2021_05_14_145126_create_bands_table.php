@@ -20,12 +20,11 @@ class CreateBandsTable extends Migration
             $table->string('name')->comment('バンド名');
             $table->unsignedInteger('label_id')->default(\App\Models\band\Label::LABEL_ID_EXAMPLE)->comment('Labelと紐付け');
             $table->bigInteger('create_user_id')->nullable()->comment('作成者');
-            $table->timestamp('created_at')->comment('作成日');
+            $table->timestamp('created_at')->nullable()->comment('作成日');
             $table->bigInteger('update_user_id')->nullable()->comment('更新者');
-            $table->timestamp('updated_at')->comment('更新日');
+            $table->timestamp('updated_at')->nullable()->comment('更新日');
             $table->bigInteger('delete_user_id')->nullable()->comment('削除者');
             $table->timestamp('deleted_at')->nullable()->comment('削除日');
-
         });
         // DB::table('bands')->insert(['id' => \App\Models\band::BAND_ID_EXAMPLE, 'name' => 'バンドメンバー名 見本',]);
         // DB::table('bands')->insert(['id' => 2, 'name' => 'アコースティック 灯火']);

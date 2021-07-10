@@ -18,9 +18,9 @@ class CreateGoodsTypesTable extends Migration
             $table->string('type_name')->comment('グッズ種類名称');
             $table->string('memo')->comment('備考');
             $table->bigInteger('create_user_id')->nullable()->comment('作成者');
-            $table->timestamp('created_at')->comment('作成日');
+            $table->timestamp('created_at')->nullable()->comment('作成日');
             $table->bigInteger('update_user_id')->nullable()->comment('更新者');
-            $table->timestamp('updated_at')->comment('更新日');
+            $table->timestamp('updated_at')->nullable()->comment('更新日');
             $table->bigInteger('delete_user_id')->nullable()->comment('削除者');
             $table->timestamp('deleted_at')->nullable()->comment('削除日');
         });
