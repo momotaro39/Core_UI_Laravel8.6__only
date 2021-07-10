@@ -86,6 +86,8 @@ Route::group(['middleware' => ['get.menu']], function () {
 
 
 
+    // YouTube Api設定用
+    Route::get('/function/youtube/channels/{id}/titles', 'YoutubeApiController@getListByChannelId');
 
     //Api GitHubapi表示に使用
     Route::get('/function/github', [\App\Http\Controllers\ApiSet\GitHubApiController::class, 'index']);
