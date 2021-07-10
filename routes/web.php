@@ -76,6 +76,16 @@ Route::group(['middleware' => ['get.menu']], function () {
     // Api ランダムユーザー表示
     Route::get('/function/randomuser', 'RandomuserController@index');
 
+    // QiitaApi 取得表示のみ
+    Route::get('/function/qiita', 'QiitaApiPostController@index');
+    // QiitaApi 取得投稿編
+    Route::get('/function/qiita/create', function () {
+        return view('QiitaApi.form');
+    });
+    Route::post('/function/qiita/send', 'QiitaApiPostController@send');
+
+
+
 
     //Api GitHubapi表示に使用
     Route::get('/function/github', [\App\Http\Controllers\ApiSet\GitHubApiController::class, 'index']);
