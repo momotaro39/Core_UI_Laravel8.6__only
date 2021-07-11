@@ -15,7 +15,7 @@ class LineApiController extends Controller
 
 
     /**
-     *  送信の際に利用するデータenvファイルに設定する
+     *  送信の際に利用するデータenvファイルに設定する。
      */
     public function __construct()
     {
@@ -99,6 +99,7 @@ class LineApiController extends Controller
     public function sendMessage(Request $request)
     {
         // Lineに送信する準備
+        // インスタンスを作成して、通信を行う
         $http_client = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($this->access_token);
         $bot         = new \LINE\LINEBot($http_client, ['channelSecret' => $this->channel_secret]);
 
