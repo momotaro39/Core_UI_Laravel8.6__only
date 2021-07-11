@@ -90,6 +90,17 @@ Route::group(['middleware' => ['get.menu']], function () {
     //Api GitHubapi表示に使用
     Route::get('/function/github', [\App\Http\Controllers\ApiSet\GitHubApiController::class, 'index']);
 
+
+
+
+    /************************ LINE *************************/
+    // line webhook受取用
+    Route::post('/function/line/callback', 'LineApiController@postWebhook');
+    // line メッセージ送信用
+    Route::get('/function/line/message/send', 'LineApiController@sendMessage');
+
+
+
     //Axios導入テスト フォルダとファイル名でビューファイルを指定
     Route::get('/function/users', function () {
         return view('axios.index');
