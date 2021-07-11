@@ -18,4 +18,13 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+
+
+    # Set APP_ENV
+    # 環境ごとにenvファイルの読み込みを変更する
+    # ドメインごとに変更する
+    SetEnvIf Host "laravel8-core.garapiko.xyz" APP_ENV=prod
+    SetEnvIf Host "laravel8-core-stg.garapiko.xyz" APP_ENV=stg
+    SetEnvIf Host "laravel8-core-dev.garapiko.xyz" APP_ENV=dev
+
 </IfModule>
