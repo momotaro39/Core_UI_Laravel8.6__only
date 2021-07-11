@@ -14,7 +14,8 @@
 
 use App\Http\Controllers\TodoController;
 
-
+// メール送信用
+use App\Http\Controllers\MailSendController;
 
 use \Band\Admin\UserRoleController;
 use \Band\Admin\UserController;
@@ -119,6 +120,21 @@ Route::group(['middleware' => ['get.menu']], function () {
 
     // Laravel_Excel追加
     // Route::get('excelusers', [ExcelUsersController::class, 'export']);
+
+    /*
+|--------------------------------------------------------------------------
+| 追加機能用ルーティング
+|--------------------------------------------------------------------------
+|
+| メール設定用ルーティング
+|
+*/
+
+    // Route::get('/function/mailtest', 'MailSendController@index');
+    // Route::get('/function/mailsend', 'MailSendController@send');
+    Route::get('/function/mailsend', [MailSendController::class, 'send']);
+    Route::get('/function/mail/mailrablesend', [MailSendController::class, 'MaiableSend']);
+
 
     /*
 |--------------------------------------------------------------------------

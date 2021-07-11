@@ -18,6 +18,11 @@
 /storage/*.key
 /vendor
 .env
+.env.prod
+.env.example
+.env.example-sqlite
+.env.stg
+.env.dev
 .env.backup
 .phpunit.result.cache
 Homestead.json
